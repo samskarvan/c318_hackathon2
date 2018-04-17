@@ -67,7 +67,10 @@ var myLatLng = {lat: 33.5427, lng: -117.7854};
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: myLatLng,
-        zoom: 12
+        zoom: 12,
+        gestureHandling: "none",
+        disableDefaultUI: true,
+        mapTypeId: 'satellite'
     });
     var marker = new google.maps.Marker({
         position: myLatLng,
@@ -77,6 +80,7 @@ function initMap() {
         title: 'Laguna Beach'
 
     });
+    map.zoomTo(myLatLng);
 }
 
 $(document).ready(function(){
