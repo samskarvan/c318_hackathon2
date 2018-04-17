@@ -7,7 +7,9 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="style.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtnISxBNvKRzUlIu5U2DDqXJT7wu2d7CY&callback=initMap">
+        </script>
         <script src="main.js"></script>
         <title>Document</title>
     </head>
@@ -23,27 +25,4 @@
         </div>
         <footer></footer>
     </body>
-    <script>
-        var map;
-        var markerBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-        var markerImage = 'https://coronadotimes.com/wp-content/uploads/2014/07/585-IMG_10221.jpg';
-        var myLatLng = {lat: 33.5427, lng: -117.7854};
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map-container'), {
-                center: myLatLng,
-                zoom: 12
-            });
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                label: "A",
-                animation: google.maps.Animation.DROP,
-                title: 'Laguna Beach'
-
-            });
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtnISxBNvKRzUlIu5U2DDqXJT7wu2d7CY&callback=initMap">
-    </script>
 </html>
