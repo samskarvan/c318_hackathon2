@@ -6,10 +6,10 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtnISxBNvKRzUlIu5U2DDqXJT7wu2d7CY&callback=initMap">
         </script>
@@ -18,26 +18,16 @@
     </head>
     <body>
         <!-- desktop version -->
-        <header class="hidden-xs"></header>
-        <div class="info-container hidden-xs">
+        <header></header>
+        <div class="info-container">
             <div class="info-1"></div>
             <div class="info-2"></div>
         </div>
-        <div id="map-container" class = "hidden-xs">
-            <div class="map"></div>
+        <div id="wrapper">
+            <div id="map-container"></div>
+            <div class="picture"></div>
             <div class="weather"></div>
         </div>
-        <footer class="hidden-xs"></footer>
-        <!-- mobile version -->
-        <header class="hidden-sm hidden-md hidden-lg"></header>
-        <div class="info-container hidden-sm hidden-md hidden-lg">
-            <div class="info-1"></div>
-            <div class="info-2"></div>
-        </div>
-        <div class="map-container hidden-sm hidden-md hidden-lg">
-            <div class="map"></div>
-            <div class="weather"></div>
-        </div>
-        <footer class="hidden-sm hidden-md hidden-lg"></footer>
+        <footer></footer>
     </body>
 </html>
