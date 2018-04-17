@@ -34,16 +34,21 @@ header {
     background-color: lightgreen;
 }
 
-#map-container {
+#wrapper {
     position: relative;
     display: inline-block;
     height: 85%;
     width: 69%;
-    background-color: #6a6969;
     box-sizing: border-box;
 }
 
-.map {
+#map-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.picture {
     height: 25%;
     width: 25%;
     position: absolute;
@@ -60,6 +65,7 @@ header {
     left: 1%;
     margin: auto auto 5vh 5vw;
     background-color: #b65824;
+    z-index: 99;
 }
 
 footer {
