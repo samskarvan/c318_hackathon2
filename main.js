@@ -69,8 +69,8 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
         zoom: 14.05,
-        // gestureHandling: "none",
-        // disableDefaultUI: true,
+        gestureHandling: "none",
+        disableDefaultUI: true,
         mapTypeId: 'satellite'
     });
     var marker = new google.maps.Marker({

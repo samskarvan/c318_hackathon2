@@ -1,7 +1,7 @@
 body {
     height: 100vh;
     width: 100vw;
-    background-color: #d42551;
+    background-color: #B6C3CB;
     margin: 0;
 }
 
@@ -16,7 +16,7 @@ header {
     display: inline-block;
     height: 85%;
     width: 30%;
-    background-color: #c39005;
+    background-color: #1E4969;
     box-sizing: border-box;
 }
 
@@ -24,14 +24,14 @@ header {
     height: 25%;
     width: 100%;
     margin-top: 5vh;
-    background-color: #fffabe;
+    background-color: #B6C3CB;
 }
 
 .info-2 {
     height: 25%;
     width: 100%;
     margin: 20vh auto;
-    background-color: lightgreen;
+    background-color: #B6C3CB;
 }
 
 #map-container {
