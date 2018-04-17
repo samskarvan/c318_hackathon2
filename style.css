@@ -71,7 +71,9 @@ footer {
 .current {
     text-align: center;
 }
-
+.current >p, .sunrise-sunset >p, .high-low>p {
+    margin: 0;
+}
 .current > p:first-child{
     font-size: 1.5em;
 }

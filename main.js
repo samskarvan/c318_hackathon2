@@ -58,7 +58,32 @@ function appendWeatherInfoToDom (obj){
     sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
     $('.weather').append(currentDiv, sunriseSunsetTime, highAndLowTemp);
 }
-$(document).ready(getWeatherFomDarkSky);
+
+
+//*********************MAP*************/////
+var map;
+var markerBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var markerImage = 'https://coronadotimes.com/wp-content/uploads/2014/07/585-IMG_10221.jpg';
+var lagunaCenter = {lat: 33.5427, lng: -117.7854};
+function initMap() {
+    map = new google.maps.Map(document.getElementsByClassName('map-container'), {
+        center: lagunaCenter,
+        zoom: 12
+    });
+    var marker = new google.maps.Marker({
+        position: lagunaCenter,
+        map: map,
+        label: "A",
+        animation: google.maps.Animation.DROP,
+        title: 'Laguna Beach'
+
+    });
+}
+
+$(document).ready(function(){
+    getWeatherFomDarkSky();
+    // initMap();
+});
 
 ///////************************-------------Harrison's shit--------------********************************////////////////////
 
