@@ -1,0 +1,69 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #d42551;
+    margin: 0;
+}
+
+header {
+    height: 10%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info-container {
+    position: relative;
+    display: inline-block;
+    height: 85%;
+    width: 30%;
+    background-color: #c39005;
+    box-sizing: border-box;
+}
+
+.info-1 {
+    height: 25%;
+    width: 100%;
+    margin-top: 5vh;
+    background-color: #fffabe;
+}
+
+.info-2 {
+    height: 25%;
+    width: 100%;
+    margin: 20vh auto;
+    background-color: lightgreen;
+}
+
+.map-container {
+    position: relative;
+    display: inline-block;
+    height: 85%;
+    width: 69%;
+    background-color: #6a6969;
+    box-sizing: border-box;
+}
+
+.map {
+    height: 25%;
+    width: 25%;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: #1fcedb;
+}
+
+.weather {
+    height: 25%;
+    width: 25%;
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+    margin: auto auto 5vh 5vw;
+    background-color: #b65824;
+}
+
+footer {
+    height: 5%;
+    width: 100%;
+    box-sizing: border-box;
+}
