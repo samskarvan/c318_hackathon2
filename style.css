@@ -67,3 +67,22 @@ footer {
     width: 100%;
     box-sizing: border-box;
 }
+
+.current {
+    text-align: center;
+}
+.current >p, .sunrise-sunset >p, .high-low>p {
+    margin: 0;
+}
+.current > p:first-child{
+    font-size: 1.5em;
+}
+
+.sunrise-sunset, .high-low{
+    display: inline-block;
+    position: absolute;
+}
+
+.high-low{
+    right: 0;
+}
