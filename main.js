@@ -6,8 +6,8 @@ function getWeatherFomDarkSky(){
         'url': ' https://api.darksky.net/forecast/d89a8f31d58a881ce47cfc2ef67596a1/33.51941, -117.76292',
         'method': 'GET',
         success: function (result) {
-            let currentTemp = `Current Temperature: ${Math.ceil(result.currently.temperature)} F`;
-            let currentWeatherSummary = result.currently.summary;
+            let currentTemp = `${Math.ceil(result.currently.temperature)} F`;
+            let currentWeatherSummary = `Currently: ${result.currently.summary}`;
             let feelsLikeTemp = `Feels Like: ${Math.ceil(result.currently.apparentTemperature)} F`;
             let humidity = `Humidity: ${result.currently.humidity}%`;
             let dailyHighTemp = `Today's High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
@@ -15,9 +15,6 @@ function getWeatherFomDarkSky(){
             let dailyWeatherSummary = result.daily.data[0].summary;
             let sunriseTime = `Sunrise: ${convertTimeToPacificDaylight(result.daily.data[0].sunriseTime)}`;
             let sunsetTime = `Sunset: ${convertTimeToPacificDaylight(result.daily.data[0].sunsetTime)}`;
-
-            // let convertedSunriseTime = `Sunrise: ${convertTimeToPacificDaylight(sunriseTime)}`;
-            // let convertedSunsetTime = `Sunset: ${convertTimeToPacificDaylight(sunsetTime)}`;
 
             let localWeatherObject = {currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, dailyWeatherSummary, sunriseTime, sunsetTime};
             // console.log(localWeatherObject);
@@ -53,8 +50,13 @@ function appendWeatherInfoToDom (obj){
     let dailyWeatherSummary = $("<p>").text(obj.dailyWeatherSummary);
     let sunriseTime = $("<p>").text(obj.sunriseTime);
     let sunsetTime = $("<p>").text(obj.sunsetTime);
-
-    // $('body').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, dailyWeatherSummary, sunriseTime, sunsetTime);
+    let currentDiv = $("<div>");
+    currentDiv.addClass('current').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyWeatherSummary);
+    let highAndLowTemp = $("<div>");
+    highAndLowTemp.addClass('high-low').append(dailyHighTemp, dailyLowTemp);
+    let sunriseSunsetTime = $("<div>");
+    sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
+    $('.weather').append(currentDiv, sunriseSunsetTime, highAndLowTemp);
 }
 $(document).ready(getWeatherFomDarkSky);
 
