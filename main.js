@@ -63,17 +63,18 @@ function appendWeatherInfoToDom (obj){
 var map;
 var markerBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 var markerImage = 'https://coronadotimes.com/wp-content/uploads/2014/07/585-IMG_10221.jpg';
-var myLatLng = {lat: 33.5427, lng: -117.7854};
+var lagunaCenter = {lat:33.522759, lng: -117.763314};
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
-        center: myLatLng,
-        zoom: 12,
-        gestureHandling: "none",
-        disableDefaultUI: true,
+        center: lagunaCenter,
+        zoom: 14.05,
+        // gestureHandling: "none",
+        // disableDefaultUI: true,
         mapTypeId: 'satellite'
     });
     var marker = new google.maps.Marker({
-        position: myLatLng,
+        position: lagunaCenter,
         map: map,
         label: "A",
         animation: google.maps.Animation.DROP,
