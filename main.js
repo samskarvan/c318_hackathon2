@@ -344,6 +344,7 @@ function dropMarker() {
         }
 
         clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+        markerArray.push(marker)
 
     }
     //console.log(beachesArray);
