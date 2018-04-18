@@ -337,21 +337,24 @@ function dropMarker() {
             animation: google.maps.Animation.DROP,
         });
         arrayOfMarkers.push(marker);
+        clickHandler(marker, beachesArray[latlngArrayIndex]);
 
-        marker.addListener('click', function() {
-             displayImage();
-             displayYelp();
-             // $('.markers').removeClass('clickedBeach');
-             // $(this.marker).addClass('clickedBeach');
-             console.log(this.getPosition().lat());
-             console.log(this.getPosition().lng());
-         });
     }
 }
-
-function displayImage(){
+function clickHandler(markerClicked,beachObj){
+    debugger;
+    markerClicked.addListener('click', function() {
+        displayImage(beachObj);
+        displayYelp();
+        // $('.markers').removeClass('clickedBeach');
+        // $(this.marker).addClass('clickedBeach');
+        console.log(this.getPosition().lat());
+        console.log(this.getPosition().lng());
+    });
+}
+function displayImage(clickedObj){
 debugger;
-    $('.picture').css('background-image', 'url('+this.picture+')');
+    $('.picture').css('background-image', 'url('+clickedObj.picture+')');
 
 }
 
@@ -397,7 +400,7 @@ function displayYelp(){}
                console.log(yelpObject);
 
             append_Yelp_Data_To_Dom( yelpObject );
-                
+
             },
             error: function() {
                 console.error("The server returned no information.");
@@ -408,7 +411,7 @@ function displayYelp(){}
     function append_Yelp_Data_To_Dom( obj ){
         // for(var i=0; i<yelp_data.businessess.length; i++){
         //     console.log(obj[i]);
-       
+
               let businesses_Title = $("<p>").text(obj.businesses_Title);
               let businesses_Img = $("<img/>").attr('src', obj.businesses_Img);
                   businesses_Img.addClass('yelp_img');
