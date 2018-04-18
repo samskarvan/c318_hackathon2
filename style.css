@@ -86,3 +86,41 @@ footer {
 .high-low{
     right: 0;
 }
+/* Yelp Container */
+
+.yelp_container {
+    height: 25%;
+    width: 25%;
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+    margin: auto auto 5vh 5vw;
+    background-color: #b65824;
+}
+.yelp_container>div {
+    width: 9vh;
+    height: 9vw;
+    border: 1px solid black;
+}
+.yelp_img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.yelp {
+    text-align: center;
+}
+
+.yelp >p, 
+.Name_title >p,
+.price_title >p{
+    margin: 0;
+}
+.yelp > p:first-child{
+    font-size: 1.5rem;
+}
+
+
+
