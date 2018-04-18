@@ -78,7 +78,7 @@ var lagunaCenter = {lat:33.522759, lng: -117.763314};
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
-        zoom: 13.05,
+        zoom: 13.5,
         gestureHandling: "none",
         disableDefaultUI: true,
         mapTypeId: 'terrain',
@@ -145,19 +145,10 @@ function initMap() {
             },
             {
                 "featureType": "poi",
-                "elementType": "geometry",
+                "elementType": "labels.text",
                 "stylers": [
                     {
-                        "color": "#dfd2ae"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#93817c"
+                        "visibility": "off"
                     }
                 ]
             },
@@ -184,7 +175,7 @@ function initMap() {
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "color": "#b9d3c2"
+                        "color": "#275D87"
                     }
                 ]
             },
@@ -330,11 +321,11 @@ console.log(beachesArray)
 }
 function dropMarker() {
     var image = {
-        url: 'assets/Images/beachUmbrella.png',
+        url: 'assets/Images/beachIcon.png',
         // This marker is 20 pixels wide by 32 pixels high.
         size: new google.maps.Size(50, 50),
         // The origin for this image is (0, 0).
-        origin: new google.maps.Point(10, 5),
+        origin: new google.maps.Point(0, 0),
         // The anchor for this image is the base of the flagpole at (0, 32).
         anchor: new google.maps.Point(0, 0)
     };
@@ -344,7 +335,7 @@ function dropMarker() {
             map: map,
             icon: image,
             label: ""+latlngArrayIndex,
-            animation: google.maps.Animation.DROP,
+            animation: google.maps.Animation.DROP
         });
         arrayOfMarkers.push(marker);
         clickHandler(marker, beachesArray[latlngArrayIndex]);
@@ -375,8 +366,8 @@ function displayYelp(){}
         let latLng = {
             lat: 33.6846,
             lng: -117.8265
-        }
-        let type="coffee"
+        };
+        let type="coffee";
         let ajaxConfig = {
             dataType: "json",
             url: "http://danielpaschal.com/yelpproxy.php",
