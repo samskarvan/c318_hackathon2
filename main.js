@@ -354,6 +354,7 @@ function clickHandler(markerClicked,beachObj,index){
         displayComment(beachObj);
         displayYelp();
         append_Yelp_Data_To_Dom(yelp_Object_Array[index]);
+
     });
 }
 function displayImage(clickedObj){
@@ -446,6 +447,7 @@ function displayComment(clickedObj){
     }
 
     function append_Yelp_Data_To_Dom( obj ){
+
               let name = $("<p>").text(obj.businesses_Name);
               let image = $("<img/>").attr('src', obj.businesses_Img);
               image.addClass('yelp_img');
@@ -454,5 +456,12 @@ function displayComment(clickedObj){
               let reviewCount =  $("<p>").text("reviews "+ obj.businesses_Review_count);
               let yelp_data_content = $("<div>");
                   yelp_data_content.addClass('yelp').append(name,image,rating,distance,reviewCount);
-                  $('.info-1').append(yelp_data_content);
+
+                  $('.info-container').append(yelp_data_content);
+
+        }
+
+        function scrolling() {
+            $('.info-container').scrollTop(300);
+
         }
