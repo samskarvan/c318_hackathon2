@@ -32,6 +32,8 @@ body {
     font-weight: 800;
     letter-spacing: 1rem;
     text-shadow: 2px 2px black;
+    margin-right: 2vw;
+    font-size: 5vh;
     /* font-size: 100px; */
 }
 .header-container{
