@@ -12,11 +12,22 @@ header {
     box-sizing: border-box;
 }
 
+footer{
+    height: 2.5%;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    background-color: #275D87;
+}
 .info-container-wrapper{
     overflow: hidden;
-    height: 80vh;
+    height: 83vh;
     width: 25vw;
     display: inline-block;
+    border-radius: 5%;
+    margin-bottom: 1.5%;
 }
 .info-container {
     /*position: relative;*/
@@ -25,9 +36,9 @@ header {
     width: 100%;
     /*height: 80vh;*/
     /*width: 25vw;*/
-    background-color: #1E4969;
+    background-color: #B6C3CB;
     box-sizing: border-box;
-
+    opacity: 0.8;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1%;
@@ -38,7 +49,6 @@ header {
     height: 25%;
     width: 100%;
     margin-top: 5vh;
-    overflow: scroll;
 
   
 }
@@ -54,7 +64,7 @@ header {
 #wrapper {
     position: relative;
     display: inline-block;
-    height: 80vh;
+    height: 85vh;
     width: 70vw;
     box-sizing: border-box;
 }
@@ -71,9 +81,11 @@ header {
     position: absolute;
     top: 5%;
     right: 5%;
-    background-color: #1fcedb;
+    background-color: #338C81;
     background-size: contain;
     background-repeat: no-repeat;
+    box-shadow: 5px 5px 10px;
+    opacity: 0.8;
 }
 
 .image {
@@ -115,27 +127,15 @@ header {
     margin: auto auto 5vh 5vw;
     background-color: #338C81;
     opacity: 0.8;
-    z-index: 99;
     padding: 10px;
-}
-
-footer {
-    height: 5%;
-    width: 100%;
-    box-sizing: border-box;
+    box-shadow: 1px 1px 10px;
+    text-align: center;
 }
 
 .current, .daily-info {
     text-align: center;
     height: 50%;
     width: 100%;
-}
-.current >p, .sunrise-sunset >p, .high-low>p {
-    margin: 0;
-    font-size: 1.2em;
-}
-.current > p:first-child{
-    font-size: 3.5em;
 }
 
 .sunrise-sunset, .high-low{
@@ -214,10 +214,25 @@ footer {
 }
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
-    border-radius: 20%;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #B6C3CB;
-    border-radius: 20%;
+    background-color: #1E4969;
     height: 1%
 }
+
+ @media and screen (max-width: 600px) {
+     .current > p, .sunrise-sunset > p, .high-low > p, .weather > p {
+         margin: 1%;
+         padding: 1%;
+         height: 10%;
+         font-size: 100%;
+     }
+
+     /*.current > p:first-child{*/
+     /*font-size: 3.5em;*/
+     /*}*/
+     .weather > p:first-child {
+         font-size: 300%;
+         height: 20%;
+     }
+ }
