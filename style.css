@@ -87,11 +87,23 @@ header {
 .reviewTextBox {
     background-color: black ;
     opacity: 0.8;
+    max-height: 150px;
+    margin: 2%;
+    margin-top: 5%;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 3%;
 
+}
+
+.beachName {
+    font-size: 120%;
+    text-align: center;
 }
 
 .reviewText .reviewRating{
     font-size: 100%;
+    text-align: center;
 }
 
 .weather {

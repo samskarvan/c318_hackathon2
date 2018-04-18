@@ -238,17 +238,17 @@ var beachArray = [
     "Victoria Beach",
     "Treasure Island Beach",
     "Aliso Beach",
-    "Coast Royale Beach",
+    "West Street Beach",
     "Table Rock Beach",
     "1000 Steps Beach"
 ];
 
 var beachIdArray= [
     "ChIJebS6-Rzk3IARQjvVK17E-H4",
-    "EiJFbWVyYWxkIEJheSwgTGFndW5hIEJlYWNoLCBDQSwgVVNB",
-    "EiNDcmVzY2VudCBCYXksIExhZ3VuYSBCZWFjaCwgQ0EsIFVTQQ",
+    "ChIJGwIiwBjk3IAR_KeQzuCxMDA",
+    "ChIJiR_-gDvk3IARJvNOyNe6nqs",
     "ChIJN44pRjrk3IAR7UHsqYmz59g",
-    "ChIJCczbADrk3IARyEU4kGA23IA",
+    "ChIJ0cOR_znk3IARGq0Veobn4tw",
     "ChIJdct2SDfk3IAR30_IxuG-S4Q",
     "ChIJKSemcTbk3IARS9eQ4c_fJcY",
     "ChIJH4Y5okrk3IAR2siC9QLVqCY",
@@ -258,9 +258,9 @@ var beachIdArray= [
     "ChIJE76HsRLl3IARM9c5begLxOg",
     "ChIJtxPwxWzl3IARgHe-w_aL1AM",
     "ChIJU3TgxGnl3IAR26h3tmJHpSA",
-    "ChIJmw_lV1vl3IARgxDkQ9SbKxs",
+    "ChIJe58-Flvl3IARcLNCkfMFFt0",
     "ChIJN2AXi1rl3IARndYdtkSYiRo",
-    "EicxMDAwIFN0ZXBzIEJlYWNoLCBMYWd1bmEgQmVhY2gsIENBLCBVU0E"
+    "ChIJJ50s6lXl3IARJr8oXjZjiL8"
 
 ];
 
@@ -302,9 +302,10 @@ var imageArray = [
     "./assets/Images/coastRoyale.jpg",
     "./assets/Images/tableRock.jpg",
     "./assets/Images/thousandStepsBeach.jpg",
-    "./assets/Images/cameoCove.jpg",
+    "./assets/Images/cameoCove.jpg"
 ];
 
+var markerArray = [];
 var beachesArray = [];
 function constructBeachObjects(){
     for(var i = 0; i < beachLongLat.length; i++){
@@ -336,7 +337,7 @@ function dropMarker() {
             },
             map: map,
             icon: image,
-            label: "" + latlngArrayIndex,
+            label: "",
             animation: google.maps.Animation.DROP,
         });
         var storeType = ["bar", "coffee", "food", "rental", "hotel"];
@@ -346,10 +347,25 @@ function dropMarker() {
         console.log(beachesArray);
 
             clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+            markerArray.push(marker)
     }
 }
 function clickHandler(markerClicked,beachObj,index){
     markerClicked.addListener('click', function() {
+        for(var i = 0; i < markerArray.length; i++){
+            markerArray[i].setIcon({
+                url: 'assets/Images/beachIcon.png',
+                anchor: new google.maps.Point(0, 0),
+                origin: new google.maps.Point(0, 0),
+            });
+            markerArray[i].setAnimation(null);
+        }
+        markerClicked.setIcon({
+            url: 'assets/Images/beachIconSelected.png',
+            anchor: new google.maps.Point(0, 0),
+            origin: new google.maps.Point(0, 0),
+        });
+        markerClicked.setAnimation(google.maps.Animation.BOUNCE);
         displayImage(beachObj);
         displayComment(beachObj);
         displayYelp();
@@ -370,6 +386,7 @@ function displayComment(clickedObj){
     }, function(place) {
         $('.reviewText').text(place.reviews[0].text);
         $('.reviewRating').text(place.reviews[0].rating + ' Stars');
+        $('.beachName').text(clickedObj.name);
         console.log(place.reviews);
     });
     console.log(clickedObj)
