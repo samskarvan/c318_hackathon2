@@ -57,34 +57,58 @@ header {
     align-content: center;
 }
 
+footer{
+    height: 2.5%;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    background-color: #275D87;
+}
+.info-container-wrapper{
+    overflow: hidden;
+    height: 83vh;
+    width: 25vw;
+    display: inline-block;
+    border-radius: 5%;
+    margin-bottom: 1.5%;
+}
 .info-container {
     display: inline-block;
-    height: 80vh;
-    width: 25vw;
-    background-color: #1E4969;
+    height: 100%;
+    width: 100%;
+    /*height: 80vh;*/
+    /*width: 25vw;*/
+    background-color: #B6C3CB;
     box-sizing: border-box;
-    overflow: hidden;
+    opacity: 0.8;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1%;
+
 }
 
 .info-1 {
     height: 25%;
     width: 100%;
     margin-top: 5vh;
-    /*background-color: #B6C3CB;*/
+
+  
 }
 
 .info-2 {
     height: 25%;
     width: 100%;
     margin: 20vh auto;
-    background-color: #B6C3CB;
+    /*background-color: #B6C3CB;*/
     border-bottom: .2em dotted #6a6969;
 }
 
 #wrapper {
     position: relative;
     display: inline-block;
-    height: 80vh;
+    height: 85vh;
     width: 70vw;
     box-sizing: border-box;
 }
@@ -96,22 +120,46 @@ header {
 }
 
 .picture {
-    height: 30%;
-    width: 30%;
+    height: 40%;
+    width: 40%;
     position: absolute;
     top: 5%;
     right: 5%;
-    background-color: #1fcedb;
+    background-color: #338C81;
     background-size: contain;
     background-repeat: no-repeat;
+    box-shadow: 5px 5px 10px;
+    opacity: 0.8;
 }
 
 .image {
     height: 90%;
     /*width: ;*/
     margin: 2%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
+}
+
+.reviewTextBox {
+    background-color: black ;
+    opacity: 0.8;
+    max-height: 150px;
+    margin: 2%;
+    margin-top: 5%;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 3%;
+
+}
+
+.beachName {
+    font-size: 120%;
+    text-align: center;
+}
+
+.reviewText .reviewRating{
+    font-size: 100%;
+    text-align: center;
 }
 
 .weather {
@@ -123,31 +171,22 @@ header {
     margin: auto auto 5vh 5vw;
     background-color: #338C81;
     opacity: 0.8;
-    z-index: 99;
     padding: 10px;
-}
-
-footer {
-    height: 5%;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.current {
+    box-shadow: 1px 1px 10px;
     text-align: center;
 }
-.current >p, .sunrise-sunset >p, .high-low>p {
-    margin: 0;
-    font-size: 1.2em;
-}
-.current > p:first-child{
-    font-size: 3.5em;
+
+.current, .daily-info {
+    text-align: center;
+    height: 50%;
+    width: 100%;
 }
 
 .sunrise-sunset, .high-low{
     display: inline-block;
-    position: absolute;
-    padding: 3%;
+    /*margin: 8%;*/
+    height: 100%;
+    width: 40%;
 }
 
 .high-low{
@@ -193,7 +232,9 @@ footer {
 }
 
 
+.daily-info{
 
+}
 
 
 
@@ -209,4 +250,33 @@ footer {
 .content {
     position: absolute;
     left: 2%;
+    bottom: 0
 }
+
+::-webkit-scrollbar{
+    width: 2%;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #1E4969;
+    height: 1%
+}
+
+ @media and screen (max-width: 600px) {
+     .current > p, .sunrise-sunset > p, .high-low > p, .weather > p {
+         margin: 1%;
+         padding: 1%;
+         height: 10%;
+         font-size: 100%;
+     }
+
+     /*.current > p:first-child{*/
+     /*font-size: 3.5em;*/
+     /*}*/
+     .weather > p:first-child {
+         font-size: 300%;
+         height: 20%;
+     }
+ }

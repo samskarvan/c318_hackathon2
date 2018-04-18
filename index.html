@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtnISxBNvKRzUlIu5U2DDqXJT7wu2d7CY&libraries=places&callback=initMap">
     </script>
@@ -38,9 +38,12 @@
 
 
 <div class="content">
-    <div class="info-container">
-        <div class="info-1"></div>
-        <div class="info-2"></div>
+
+    <div class="info-container-wrapper">
+        <div class="info-container">
+            <div class="info-1"></div>
+            <div class="info-2"></div>
+        </div>
     </div>
     <div id="wrapper">
         <div id="map-container">
@@ -48,10 +51,15 @@
         </div>
         <div class="picture rounded-border">
             <div class="image rounded-border"></div>
+            <div class="reviewTextBox">
+                <p class="beachName"></p>
+                <p class="reviewRating"></p>
+                <p class="reviewText">Select one of the icons to get information on one of Laguna Beach's several hard to find beaches and coves.</p>
+            </div>
         </div>
-         <div class="weather rounded-border"></div>
+        <div class="weather rounded-border"></div>
     </div>
 </div>
-<!--<footer></footer>-->
+<footer></footer>
 </body>
 </html>
