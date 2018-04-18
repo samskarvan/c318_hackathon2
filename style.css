@@ -1,8 +1,9 @@
 body {
     height: 100vh;
     width: 100vw;
-    background-color: #d42551;
+    background-color: #B6C3CB;
     margin: 0;
+    color: #B6C3CB;
 }
 
 header {
@@ -16,7 +17,7 @@ header {
     display: inline-block;
     height: 85%;
     width: 30%;
-    background-color: #c39005;
+    background-color: #1E4969;
     box-sizing: border-box;
 }
 
@@ -24,42 +25,58 @@ header {
     height: 25%;
     width: 100%;
     margin-top: 5vh;
-    background-color: #fffabe;
+    background-color: #B6C3CB;
 }
 
 .info-2 {
     height: 25%;
     width: 100%;
     margin: 20vh auto;
-    background-color: lightgreen;
+    background-color: #B6C3CB;
+    border-bottom: .2em dotted #6a6969;
 }
 
-#map-container {
+#wrapper {
     position: relative;
     display: inline-block;
     height: 85%;
     width: 69%;
-    background-color: #6a6969;
     box-sizing: border-box;
 }
 
-.map {
-    height: 25%;
-    width: 25%;
+#map-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.picture {
+    height: 30%;
+    width: 30%;
     position: absolute;
     top: 5%;
     right: 5%;
     background-color: #1fcedb;
 }
 
+.image {
+    background-image: url("assets/Images/alisoCreek.jpg");
+    height: 90%;
+    /*width: ;*/
+    margin: 2%;
+}
+
 .weather {
-    height: 25%;
+    height: 35%;
     width: 25%;
     position: absolute;
     bottom: 1%;
     left: 1%;
     margin: auto auto 5vh 5vw;
-    background-color: #b65824;
+    background-color: #338C81;
+    opacity: 0.8;
+    z-index: 99;
+    padding: 10px;
 }
 
 footer {
@@ -73,19 +90,22 @@ footer {
 }
 .current >p, .sunrise-sunset >p, .high-low>p {
     margin: 0;
+    font-size: 1.2em;
 }
 .current > p:first-child{
-    font-size: 1.5em;
+    font-size: 3.5em;
 }
 
 .sunrise-sunset, .high-low{
     display: inline-block;
     position: absolute;
+    padding: 3%;
 }
 
 .high-low{
     right: 0;
 }
+
 /* Yelp Container */
 
 .yelp_container {
@@ -124,3 +144,13 @@ footer {
 
 
 
+
+
+
+.rounded-border {
+    border-radius: 10%
+
+.clickedBeach {
+    color: green;
+
+  }
