@@ -15,8 +15,8 @@ header {
 .info-container {
     position: relative;
     display: inline-block;
-    height: 85%;
-    width: 30%;
+    height: 80vh;
+    width: 25vw;
     background-color: #1E4969;
     box-sizing: border-box;
 }
@@ -39,8 +39,8 @@ header {
 #wrapper {
     position: relative;
     display: inline-block;
-    height: 85%;
-    width: 69%;
+    height: 80vh;
+    width: 70vw;
     box-sizing: border-box;
 }
 
@@ -155,5 +155,10 @@ footer {
 
 .clickedBeach {
     color: green;
+}
 
-  }
+
+.content {
+    position: absolute;
+    left: 2%;
+}
