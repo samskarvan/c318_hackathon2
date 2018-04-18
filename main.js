@@ -352,6 +352,7 @@ function dropMarker() {
         }
 
         clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+        markerArray.push(marker)
 
     }
     //console.log(beachesArray);
@@ -377,16 +378,6 @@ function clickHandler(markerClicked,beachObj,index){
         displayYelp();
         append_Yelp_Data_To_Dom(beachesArray[index]);
     });
-
-    google.maps.event.addListener(markerClicked, 'click', function() {
-        markerClicked.setIcon("assets/Images/beachUmbrella");
-        infowindow.open(map);
-    });
-
-    // markerClicked.addListener('hover', function() {
-    //     creat
-    //
-    // });
 }
 function displayImage(clickedObj){
     $('.image').css('background-image', 'url('+clickedObj.picture+')');
