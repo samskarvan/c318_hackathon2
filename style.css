@@ -19,7 +19,7 @@ body {
     height: 50%;
 }
 #logo{ 
-    width: 20%;
+    width: 100%;
     height: 100%;
     padding: 11px;
     /* margin: auto; */
@@ -32,6 +32,8 @@ body {
     font-weight: 800;
     letter-spacing: 1rem;
     text-shadow: 2px 2px black;
+    margin-right: 2vw;
+    font-size: 5vh;
     /* font-size: 100px; */
 }
 .header-container{
@@ -129,7 +131,7 @@ footer{
     background-size: contain;
     background-repeat: no-repeat;
     box-shadow: 5px 5px 10px;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .image {
