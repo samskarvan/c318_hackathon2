@@ -65,7 +65,9 @@ function appendWeatherInfoToDom (obj){
     highAndLowTemp.addClass('high-low').append(dailyHighTemp, dailyLowTemp);
     let sunriseSunsetTime = $("<div>");
     sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
-    $('.weather').append(currentDiv, sunriseSunsetTime, highAndLowTemp);
+    let dailyInfo = $("<div>");
+    dailyInfo.addClass("daily-info").append(sunriseSunsetTime, highAndLowTemp);
+    $('.weather').append(currentDiv, dailyInfo);
 }
 
 
