@@ -342,7 +342,7 @@ function dropMarker() {
     }
 }
 function clickHandler(markerClicked,beachObj){
-    debugger;
+   
     markerClicked.addListener('click', function() {
         displayImage(beachObj);
         displayYelp();
@@ -353,7 +353,6 @@ function clickHandler(markerClicked,beachObj){
     });
 }
 function displayImage(clickedObj){
-debugger;
     $('.picture').css('background-image', 'url('+clickedObj.picture+')');
 
 }
@@ -382,44 +381,27 @@ function displayYelp(){}
                     "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
             },
             success: function(response) {
-                console.log("this is my response",response);
-                // let businessName = response.businesses;
-                yelp_data = response;
-                let businesses_Title = `yelp_data.businesses[0].name`;
-
-                let businesses_Img = yelp_data.businesses[0].image_url;
-
-                let businesses_Closed = yelp_data.businesses[0].is_closed;
-
-                let businesses_Location = yelp_data.businesses[0].location.address1;
-
-                let businesses_Price = yelp_data.businesses[0].price;
-
-
-               let yelpObject = {businesses_Title, businesses_Img, businesses_Closed, businesses_Location, businesses_Price};
-               console.log(yelpObject);
-
-            append_Yelp_Data_To_Dom( yelpObject );
-
+                append_Yelp_Data_To_Dom( response );
             },
             error: function() {
-                console.error("The server returned no information.");
             }
         };
         $.ajax(ajaxConfig)
     }
-    function append_Yelp_Data_To_Dom( obj ){
-        // for(var i=0; i<yelp_data.businessess.length; i++){
-        //     console.log(obj[i]);
+    function append_Yelp_Data_To_Dom( yelpObject ){
+        for(var i=0; i<yelpObject.businesses.length; i++){
+            let businesses_Title = $("<p>").text(yelpObject.businesses[i].name);
+            console.log('biz title is: ', businesses_Title)
+            let businesses_Img = $("<img/>").attr('src', yelpObject.businesses[i].image_url);
+                businesses_Img.addClass('yelp_img');
+            let businesses_Closed =  $("<p>").text(yelpObject.businesses[i].is_closed);
+            let businesses_Location =  $("<p>").text(yelpObject.businesses[i].location.address1);
+            let businesses_Price =  $("<p>").text(yelpObject.businesses[i].price);
+            let yelp_data_content = $("<div>");
+                yelp_data_content.addClass('yelp').append(businesses_Title,businesses_Img,businesses_Closed);
+                $('.yelp_container').append(yelp_data_content);
 
-              let businesses_Title = $("<p>").text(obj.businesses_Title);
-              let businesses_Img = $("<img/>").attr('src', obj.businesses_Img);
-                  businesses_Img.addClass('yelp_img');
-              let businesses_Closed =  $("<p>").text(obj.businesses_Closed);
-              let businesses_Location =  $("<p>").text(obj.businesses_Location);
-              let businesses_Price =  $("<p>").text(obj.businesses_Price);
-              let yelp_data_content = $("<div>");
-                  yelp_data_content.addClass('yelp').append(businesses_Title,businesses_Img,businesses_Closed);
-                  $('.yelp_container').append(yelp_data_content);
+          }
+           
 
         }
