@@ -352,7 +352,6 @@ function dropMarker() {
     }
 }
 function clickHandler(markerClicked,beachObj){
-    debugger;
     markerClicked.addListener('click', function() {
         displayImage(beachObj);
         displayYelp();
@@ -363,8 +362,7 @@ function clickHandler(markerClicked,beachObj){
     });
 }
 function displayImage(clickedObj){
-debugger;
-    $('.picture').css('background-image', 'url('+clickedObj.picture+')');
+    $('.image').css('background-image', 'url('+clickedObj.picture+')');
 
 }
 
