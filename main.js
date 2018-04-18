@@ -297,7 +297,7 @@ var imageArray = [
     "./assets/Images/victoria.jpg",
     "./assets/Images/treasureIsland.jpg",
     "./assets/Images/alisoCreek.jpg",
-    "./assets/Images/coastRoyal.jpg",
+    "./assets/Images/coastRoyale.jpg",
     "./assets/Images/tableRock.jpg",
     "./assets/Images/thousandStepsBeach.jpg",
     "./assets/Images/cameoCove.jpg",
@@ -335,33 +335,46 @@ function dropMarker() {
                 icon: image,
                 label: ""+latlngArrayIndex,
                 animation: google.maps.Animation.DROP,
+                placeID: beachesArray[latlngArrayIndex].id,
             });
             arrayOfMarkers.push(marker);
             yelpRatingandPictures(beachesArray[latlngArrayIndex].location);
             clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
-
-
     }
 }
 function clickHandler(markerClicked,beachObj,index){
     markerClicked.addListener('click', function() {
         displayImage(beachObj);
+        displayComment(beachObj);
         displayYelp();
         append_Yelp_Data_To_Dom(yelp_Object_Array[index]);
         // $('.markers').removeClass('clickedBeach');
         // $(this.marker).addClass('clickedBeach');
         console.log(this.getPosition().lat());
         console.log(this.getPosition().lng());
+
     });
 }
 function displayImage(clickedObj){
     $('.image').css('background-image', 'url('+clickedObj.picture+')');
-
 }
 
 function displayYelp(){}
 
+function displayComment(clickedObj){
+    var service = new google.maps.places.PlacesService(map);
+    service.getDetails({
+        placeId: clickedObj.id
+    }, function(place) {
+        $('.reviewText').text(place.reviews[0].text);
+        $('.reviewRating').text(place.reviews[0].rating + ' Stars');
+        console.log(place.reviews);
+    });
+    console.log(clickedObj)
+}
+
 ///////************************-------------Jean-Paul's shit--------------********************************////////////////////
+
  var yelp_data;
  var yelp_Object_Array=[];
     function yelpRatingandPictures(coordinates) {
@@ -412,7 +425,7 @@ function displayYelp(){}
     function append_Yelp_Data_To_Dom( obj ){
         // for(var i=0; i<yelp_data.businessess.length; i++){
         //     console.log(obj[i]);
-debugger;
+
               let name = $("<p>").text(obj.businesses_Name);
               let image = $("<img/>").attr('src', obj.businesses_Img);
               image.addClass('yelp_img');
