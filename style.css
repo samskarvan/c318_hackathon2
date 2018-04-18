@@ -264,19 +264,24 @@ footer{
     height: 1%
 }
 
- @media and screen (max-width: 600px) {
+ @media only screen and (min-width: 600px) {
      .current > p, .sunrise-sunset > p, .high-low > p, .weather > p {
          margin: 1%;
          padding: 1%;
          height: 10%;
          font-size: 100%;
      }
-
-     /*.current > p:first-child{*/
-     /*font-size: 3.5em;*/
-     /*}*/
      .weather > p:first-child {
-         font-size: 300%;
+         font-size: 250%;
          height: 20%;
      }
  }
+
+
+/*.current > p:first-child{*/
+/*font-size: 3.5em;*/
+/*}*/
+/*.weather > p:first-child {*/
+    /*font-size: 300%;*/
+    /*height: 20%;*/
+/*} >*/
