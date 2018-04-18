@@ -18,9 +18,9 @@ function getWeatherFomDarkSky(){
             let currentTemp = `${Math.ceil(result.currently.temperature)} F`;
             let currentWeatherSummary = `Currently: ${result.currently.summary}`;
             let feelsLikeTemp = `Feels Like: ${Math.ceil(result.currently.apparentTemperature)} F`;
-            let humidity = `Humidity: ${result.currently.humidity}%`;
-            let dailyHighTemp = `Today's High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
-            let dailyLowTemp = `Today's Low: ${Math.ceil(result.daily.data[0].temperatureMin)} F`;
+            let humidity = `Humidity: ${((result.currently.humidity)*100)}%`;
+            let dailyHighTemp = `High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
+            let dailyLowTemp = `Low: ${Math.ceil(result.daily.data[0].temperatureMin)} F`;
             let dailyWeatherSummary = result.daily.data[0].summary;
             let sunriseTime = `Sunrise: ${convertTimeToPacificDaylight(result.daily.data[0].sunriseTime)}`;
             let sunsetTime = `Sunset: ${convertTimeToPacificDaylight(result.daily.data[0].sunsetTime)}`;
@@ -58,13 +58,13 @@ function appendWeatherInfoToDom (obj){
     let sunsetTime = $("<p>").text(obj.sunsetTime);
     let currentDiv = $("<div>");
     currentDiv.addClass('current').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyWeatherSummary);
-    let highAndLowTemp = $("<div>");
-    highAndLowTemp.addClass('high-low').append(dailyHighTemp, dailyLowTemp);
-    let sunriseSunsetTime = $("<div>");
-    sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
-    let dailyInfo = $("<div>");
-    dailyInfo.addClass("daily-info").append(sunriseSunsetTime, highAndLowTemp);
-    $('.weather').append(currentDiv, dailyInfo);
+    // let highAndLowTemp = $("<div>");
+    // highAndLowTemp.addClass('high-low').append(dailyHighTemp, dailyLowTemp);
+    // let sunriseSunsetTime = $("<div>");
+    // sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
+    // let dailyInfo = $("<div>");
+    // dailyInfo.addClass("daily-info").append(sunriseSunsetTime, highAndLowTemp);
+    $('.weather').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity,  dailyLowTemp, dailyHighTemp, sunriseTime, sunsetTime);
 }
 
 
@@ -76,7 +76,7 @@ var lagunaCenter = {lat:33.522759, lng: -117.763314};
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
-        zoom: 13.5,
+        zoom: 14,
         gestureHandling: "none",
         disableDefaultUI: true,
         mapTypeId: 'terrain',
@@ -132,6 +132,15 @@ function initMap() {
                     }
                 ]
             },
+        {
+            featureType: 'poi.business',
+            stylers: [{visibility: 'off'}]
+        },
+        {
+            featureType: 'transit',
+            elementType: 'labels.icon',
+            stylers: [{visibility: 'off'}]
+        },
             {
                 "featureType": "landscape.natural",
                 "elementType": "geometry",
@@ -235,17 +244,17 @@ var beachArray = [
     "Victoria Beach",
     "Treasure Island Beach",
     "Aliso Beach",
-    "Coast Royale Beach",
+    "West Street Beach",
     "Table Rock Beach",
     "1000 Steps Beach"
 ];
 
 var beachIdArray= [
     "ChIJebS6-Rzk3IARQjvVK17E-H4",
-    "EiJFbWVyYWxkIEJheSwgTGFndW5hIEJlYWNoLCBDQSwgVVNB",
-    "EiNDcmVzY2VudCBCYXksIExhZ3VuYSBCZWFjaCwgQ0EsIFVTQQ",
+    "ChIJGwIiwBjk3IAR_KeQzuCxMDA",
+    "ChIJiR_-gDvk3IARJvNOyNe6nqs",
     "ChIJN44pRjrk3IAR7UHsqYmz59g",
-    "ChIJCczbADrk3IARyEU4kGA23IA",
+    "ChIJ0cOR_znk3IARGq0Veobn4tw",
     "ChIJdct2SDfk3IAR30_IxuG-S4Q",
     "ChIJKSemcTbk3IARS9eQ4c_fJcY",
     "ChIJH4Y5okrk3IAR2siC9QLVqCY",
@@ -255,9 +264,9 @@ var beachIdArray= [
     "ChIJE76HsRLl3IARM9c5begLxOg",
     "ChIJtxPwxWzl3IARgHe-w_aL1AM",
     "ChIJU3TgxGnl3IAR26h3tmJHpSA",
-    "ChIJmw_lV1vl3IARgxDkQ9SbKxs",
+    "ChIJe58-Flvl3IARcLNCkfMFFt0",
     "ChIJN2AXi1rl3IARndYdtkSYiRo",
-    "EicxMDAwIFN0ZXBzIEJlYWNoLCBMYWd1bmEgQmVhY2gsIENBLCBVU0E"
+    "ChIJJ50s6lXl3IARJr8oXjZjiL8"
 
 ];
 
@@ -299,9 +308,10 @@ var imageArray = [
     "./assets/Images/coastRoyale.jpg",
     "./assets/Images/tableRock.jpg",
     "./assets/Images/thousandStepsBeach.jpg",
-    "./assets/Images/cameoCove.jpg",
+    "./assets/Images/cameoCove.jpg"
 ];
 
+var markerArray = [];
 var beachesArray = [];
 function constructBeachObjects(){
     for(var i = 0; i < beachLongLat.length; i++){
@@ -333,24 +343,50 @@ function dropMarker() {
             },
             map: map,
             icon: image,
-            label: "" + latlngArrayIndex,
+            label: "",
             animation: google.maps.Animation.DROP,
         });
         var storeType = ["bar", "coffee", "food", "rental", "hotel"];
         for (typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
              yelpRatingandPictures(beachesArray[latlngArrayIndex], storeType[typeIndex]);
         }
+
         clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+
     }
     //console.log(beachesArray);
 }
 function clickHandler(markerClicked,beachObj,index){
     markerClicked.addListener('click', function() {
+        for(var i = 0; i < markerArray.length; i++){
+            markerArray[i].setIcon({
+                url: 'assets/Images/beachIcon.png',
+                anchor: new google.maps.Point(0, 0),
+                origin: new google.maps.Point(0, 0),
+            });
+            markerArray[i].setAnimation(null);
+        }
+        markerClicked.setIcon({
+            url: 'assets/Images/beachIconSelected.png',
+            anchor: new google.maps.Point(0, 0),
+            origin: new google.maps.Point(0, 0),
+        });
+        markerClicked.setAnimation(google.maps.Animation.BOUNCE);
         displayImage(beachObj);
         displayComment(beachObj);
         displayYelp();
         append_Yelp_Data_To_Dom(beachesArray[index]);
     });
+
+    google.maps.event.addListener(markerClicked, 'click', function() {
+        markerClicked.setIcon("assets/Images/beachUmbrella");
+        infowindow.open(map);
+    });
+
+    // markerClicked.addListener('hover', function() {
+    //     creat
+    //
+    // });
 }
 function displayImage(clickedObj){
     $('.image').css('background-image', 'url('+clickedObj.picture+')');
@@ -365,6 +401,8 @@ function displayComment(clickedObj){
     }, function(place) {
         $('.reviewText').text(place.reviews[0].text);
         $('.reviewRating').text(place.reviews[0].rating + ' Stars');
+        $('.beachName').text(clickedObj.name);
+        console.log(place.reviews);
     });
     //console.log("Cliked",clickedObj)
 }
@@ -421,6 +459,7 @@ function displayComment(clickedObj){
     }
 
     function append_Yelp_Data_To_Dom( obj ){
+
         var storeType = ["bar", "coffee", "food", "rental", "hotel"];
         for (var categoryIndex = 0; categoryIndex < 5; categoryIndex++) {
             for (var i = 0; i < 5; i++) {
@@ -435,6 +474,7 @@ function displayComment(clickedObj){
                 $('.info-1').append(yelp_data_content);
             }
         }
+
     }
 
     function scrolling() {
