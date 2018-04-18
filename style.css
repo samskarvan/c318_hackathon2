@@ -135,7 +135,7 @@ footer {
     text-align: center;
 }
 
-.yelp >p, 
+.yelp >p,
 .Name_title >p,
 .price_title >p{
     margin: 0;
@@ -151,6 +151,7 @@ footer {
 
 .rounded-border {
     border-radius: 10%
+}
 
 .clickedBeach {
     color: green;
