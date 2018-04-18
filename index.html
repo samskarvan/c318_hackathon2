@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link href="style.css" rel="stylesheet">
-
-        <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
-        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtnISxBNvKRzUlIu5U2DDqXJT7wu2d7CY&callback=initMap">
-        </script>
-
-        <script src="main.js"></script>
-        <title>Document</title>
-    </head>
-    <body>
-        <!-- desktop version -->
-        <header></header>
-        <div class="info-container">
-            <div class="info-1"></div>
-            <div class="info-2"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtnISxBNvKRzUlIu5U2DDqXJT7wu2d7CY&libraries=places&callback=initMap">
+    </script>
+    <script src="main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<!-- desktop version -->
+<header></header>
+<div class="content">
+    <div class="info-container">
+        <div class="info-1"></div>
+        <div class="info-2"></div>
+    </div>
+    <div id="wrapper">
+        <div id="map-container">
+            <div id="map"></div>
         </div>
-        <div class="yelp_container"></div>
-        <div id="wrapper">
-            <div id="map-container"></div>
-            <div class="picture rounded-border">
-                <div class="image rounded-border"></div>
-            </div>
-            <div class="weather rounded-border"></div>
+        <div class="picture rounded-border">
+            <div class="image rounded-border"></div>
         </div>
-        <footer></footer>
-    </body>
+         <div class="weather rounded-border"></div>
+    </div>
+</div>
+<!--<footer></footer>-->
+</body>
 </html>

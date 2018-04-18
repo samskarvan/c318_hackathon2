@@ -7,7 +7,6 @@ $(document).ready(initializeApp);
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
-    yelpRatingandPictures();
 }
 
 function getWeatherFomDarkSky(){
@@ -78,7 +77,7 @@ var lagunaCenter = {lat:33.522759, lng: -117.763314};
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
-        zoom: 14.05,
+        zoom: 13.5,
         gestureHandling: "none",
         disableDefaultUI: true,
         mapTypeId: 'terrain',
@@ -145,19 +144,10 @@ function initMap() {
             },
             {
                 "featureType": "poi",
-                "elementType": "geometry",
+                "elementType": "labels.text",
                 "stylers": [
                     {
-                        "color": "#dfd2ae"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#93817c"
+                        "visibility": "off"
                     }
                 ]
             },
@@ -184,7 +174,7 @@ function initMap() {
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "color": "#b9d3c2"
+                        "color": "#275D87"
                     }
                 ]
             },
@@ -209,6 +199,7 @@ function initMap() {
         // The anchor for this image is the base of the flagpole at (0, 32).
         anchor: new google.maps.Point(0, 0)
     };
+    //this is same as dropMarker ---should we delete?
     var marker = new google.maps.Marker({
         position: lagunaCenter,
         map: map,
@@ -328,24 +319,35 @@ function constructBeachObjects(){
 console.log(beachesArray)
 }
 function dropMarker() {
-    for(var latlngArrayIndex = 0; latlngArrayIndex < beachesArray.length; latlngArrayIndex++) {
-        //console.log(beachesArray[latlngArrayIndex].location[0]);
+    var image = {
+        url: 'assets/Images/beachIcon.png',
+        // This marker is 20 pixels wide by 32 pixels high.
+        size: new google.maps.Size(50, 50),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(0, 0)
+    };
+    for(var latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
         var marker = new google.maps.Marker({
-            position: {lat: beachesArray[latlngArrayIndex].location[0], lng: beachesArray[latlngArrayIndex].location[1]},
-            map: map,
-            label: ""+latlngArrayIndex,
-            animation: google.maps.Animation.DROP,
-        });
-        arrayOfMarkers.push(marker);
-        clickHandler(marker, beachesArray[latlngArrayIndex]);
+                position: {lat: beachesArray[latlngArrayIndex].location[0], lng: beachesArray[latlngArrayIndex].location[1]},
+                map: map,
+                icon: image,
+                label: ""+latlngArrayIndex,
+                animation: google.maps.Animation.DROP,
+            });
+            arrayOfMarkers.push(marker);
+            yelpRatingandPictures(beachesArray[latlngArrayIndex].location);
+            clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+
 
     }
 }
-function clickHandler(markerClicked,beachObj){
-   
+function clickHandler(markerClicked,beachObj,index){
     markerClicked.addListener('click', function() {
         displayImage(beachObj);
         displayYelp();
+        append_Yelp_Data_To_Dom(yelp_Object_Array[index]);
         // $('.markers').removeClass('clickedBeach');
         // $(this.marker).addClass('clickedBeach');
         console.log(this.getPosition().lat());
@@ -353,7 +355,7 @@ function clickHandler(markerClicked,beachObj){
     });
 }
 function displayImage(clickedObj){
-    $('.picture').css('background-image', 'url('+clickedObj.picture+')');
+    $('.image').css('background-image', 'url('+clickedObj.picture+')');
 
 }
 
@@ -361,13 +363,10 @@ function displayYelp(){}
 
 ///////************************-------------Jean-Paul's shit--------------********************************////////////////////
  var yelp_data;
-    function yelpRatingandPictures() {
-        console.log("Gotcha");
-        let latLng = {
-            lat: 33.6846,
-            lng: -117.8265
-        }
-        let type="coffee"
+ var yelp_Object_Array=[];
+    function yelpRatingandPictures(coordinates) {
+        let latLng = {lat:coordinates[0], lng:coordinates[1]};
+        let type="food";
         let ajaxConfig = {
             dataType: "json",
             url: "http://danielpaschal.com/yelpproxy.php",
@@ -376,32 +375,44 @@ function displayYelp(){}
                 latitude: latLng.lat,
                 longitude: latLng.lng,
                 term: type,
-                radius: 40000,
+                radius: 5000,
                 api_key:
                     "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
             },
             success: function(response) {
-                append_Yelp_Data_To_Dom( response );
+                yelp_data = response;
+                let businesses_Name = yelp_data.businesses[0].name;
+
+                let businesses_Img = yelp_data.businesses[0].image_url;
+
+                let businesses_Rating = yelp_data.businesses[0].rating;
+
+                let businesses_Coordinates = yelp_data.businesses[0].coordinates;
+
+                let businesses_Distance = yelp_data.businesses[0].distance;
+
+                let businesses_Review_count = yelp_data.businesses[0].review_count;
+
+
+               let yelpObject = {businesses_Name, businesses_Img, businesses_Rating, businesses_Coordinates, businesses_Distance, businesses_Review_count};
+               yelp_Object_Array.push(yelpObject);
+
             },
             error: function() {
             }
         };
         $.ajax(ajaxConfig)
-    }
-    function append_Yelp_Data_To_Dom( yelpObject ){
-        for(var i=0; i<yelpObject.businesses.length; i++){
-            let businesses_Title = $("<p>").text(yelpObject.businesses[i].name);
-            console.log('biz title is: ', businesses_Title)
-            let businesses_Img = $("<img/>").attr('src', yelpObject.businesses[i].image_url);
-                businesses_Img.addClass('yelp_img');
-            let businesses_Closed =  $("<p>").text(yelpObject.businesses[i].is_closed);
-            let businesses_Location =  $("<p>").text(yelpObject.businesses[i].location.address1);
-            let businesses_Price =  $("<p>").text(yelpObject.businesses[i].price);
-            let yelp_data_content = $("<div>");
-                yelp_data_content.addClass('yelp').append(businesses_Title,businesses_Img,businesses_Closed);
-                $('.yelp_container').append(yelp_data_content);
 
-          }
-           
+    }
+    function append_Yelp_Data_To_Dom( obj ){
+              let name = $("<p>").text(obj.businesses_Name);
+              let image = $("<img/>").attr('src', obj.businesses_Img);
+              image.addClass('yelp_img');
+              let rating =  $("<p>").text("Rating " + obj.businesses_Rating);
+              let distance =  $("<p>").text(obj.businesses_Distance);
+              let reviewCount =  $("<p>").text("reviews "+ obj.businesses_Review_count);
+              let yelp_data_content = $("<div>");
+                  yelp_data_content.addClass('yelp').append(name,image,rating,distance,reviewCount);
+                  $('.info-1').append(yelp_data_content);
 
         }
