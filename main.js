@@ -65,7 +65,9 @@ function appendWeatherInfoToDom (obj){
     highAndLowTemp.addClass('high-low').append(dailyHighTemp, dailyLowTemp);
     let sunriseSunsetTime = $("<div>");
     sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
-    $('.weather').append(currentDiv, sunriseSunsetTime, highAndLowTemp);
+    let dailyInfo = $("<div>");
+    dailyInfo.addClass("daily-info").append(sunriseSunsetTime, highAndLowTemp);
+    $('.weather').append(currentDiv, dailyInfo);
 }
 
 
@@ -297,7 +299,7 @@ var imageArray = [
     "./assets/Images/victoria.jpg",
     "./assets/Images/treasureIsland.jpg",
     "./assets/Images/alisoCreek.jpg",
-    "./assets/Images/coastRoyal.jpg",
+    "./assets/Images/coastRoyale.jpg",
     "./assets/Images/tableRock.jpg",
     "./assets/Images/thousandStepsBeach.jpg",
     "./assets/Images/cameoCove.jpg",
@@ -327,6 +329,7 @@ function dropMarker() {
     };
     for(var latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
         var marker = new google.maps.Marker({
+
             position: {
                 lat: beachesArray[latlngArrayIndex].location[0],
                 lng: beachesArray[latlngArrayIndex].location[1]
@@ -341,26 +344,38 @@ function dropMarker() {
              yelpRatingandPictures(beachesArray[latlngArrayIndex], storeType[typeIndex]);
         }
         console.log(beachesArray);
+
             clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
-
-
     }
 }
 function clickHandler(markerClicked,beachObj,index){
     markerClicked.addListener('click', function() {
         displayImage(beachObj);
+        displayComment(beachObj);
         displayYelp();
         append_Yelp_Data_To_Dom(yelp_Object_Array[index]);
     });
 }
 function displayImage(clickedObj){
     $('.image').css('background-image', 'url('+clickedObj.picture+')');
-
 }
 
 function displayYelp(){}
 
+function displayComment(clickedObj){
+    var service = new google.maps.places.PlacesService(map);
+    service.getDetails({
+        placeId: clickedObj.id
+    }, function(place) {
+        $('.reviewText').text(place.reviews[0].text);
+        $('.reviewRating').text(place.reviews[0].rating + ' Stars');
+        console.log(place.reviews);
+    });
+    console.log(clickedObj)
+}
+
 ///////************************-------------Jean-Paul's shit--------------********************************////////////////////
+
  var yelp_data;
  var yelp_Object_Array=[];
     function yelpRatingandPictures(beachObject, type) {

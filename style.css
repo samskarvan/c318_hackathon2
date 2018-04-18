@@ -12,20 +12,30 @@ header {
     box-sizing: border-box;
 }
 
+.info-container-wrapper{
+    overflow: hidden;
+    height: 80vh;
+    width: 25vw;
+    display: inline-block;
+}
 .info-container {
     /*position: relative;*/
     display: inline-block;
-    height: 80vh;
-    width: 25vw;
+    height: 100%;
+    width: 100%;
+    /*height: 80vh;*/
+    /*width: 25vw;*/
     background-color: #1E4969;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1%;
 }
 
 .info-1 {
     height: 25%;
     width: 100%;
-    margin-top: 5vh;
+    /*margin-top: 5vh;*/
     /*background-color: #B6C3CB;*/
 }
 
@@ -52,8 +62,8 @@ header {
 }
 
 .picture {
-    height: 30%;
-    width: 30%;
+    height: 40%;
+    width: 40%;
     position: absolute;
     top: 5%;
     right: 5%;
@@ -66,8 +76,18 @@ header {
     height: 90%;
     /*width: ;*/
     margin: 2%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
+}
+
+.reviewTextBox {
+    background-color: black ;
+    opacity: 0.8;
+
+}
+
+.reviewText .reviewRating{
+    font-size: 100%;
 }
 
 .weather {
@@ -89,8 +109,10 @@ footer {
     box-sizing: border-box;
 }
 
-.current {
+.current, .daily-info {
     text-align: center;
+    height: 50%;
+    width: 100%;
 }
 .current >p, .sunrise-sunset >p, .high-low>p {
     margin: 0;
@@ -102,8 +124,9 @@ footer {
 
 .sunrise-sunset, .high-low{
     display: inline-block;
-    position: absolute;
-    padding: 3%;
+    /*margin: 8%;*/
+    height: 100%;
+    width: 40%;
 }
 
 .high-low{
@@ -149,7 +172,9 @@ footer {
 }
 
 
+.daily-info{
 
+}
 
 
 
@@ -165,4 +190,18 @@ footer {
 .content {
     position: absolute;
     left: 2%;
+    bottom: 0
+}
+
+::-webkit-scrollbar{
+    width: 2%;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 20%;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #B6C3CB;
+    border-radius: 20%;
+    height: 1%
 }
