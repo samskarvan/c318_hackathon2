@@ -24,10 +24,7 @@ function getWeatherFomDarkSky(){
             let dailyWeatherSummary = result.daily.data[0].summary;
             let sunriseTime = `Sunrise: ${convertTimeToPacificDaylight(result.daily.data[0].sunriseTime)}`;
             let sunsetTime = `Sunset: ${convertTimeToPacificDaylight(result.daily.data[0].sunsetTime)}`;
-
             let localWeatherObject = {currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyHighTemp, dailyLowTemp, dailyWeatherSummary, sunriseTime, sunsetTime};
-            // console.log(localWeatherObject);
-
             appendWeatherInfoToDom(localWeatherObject);
         },
         error: function(){
@@ -344,8 +341,7 @@ function dropMarker() {
              yelpRatingandPictures(beachesArray[latlngArrayIndex], storeType[typeIndex]);
         }
         console.log(beachesArray);
-
-            clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
+        clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
     }
 }
 function clickHandler(markerClicked,beachObj,index){
@@ -370,14 +366,11 @@ function displayComment(clickedObj){
     }, function(place) {
         $('.reviewText').text(place.reviews[0].text);
         $('.reviewRating').text(place.reviews[0].rating + ' Stars');
-        console.log(place.reviews);
     });
-    console.log(clickedObj)
+    console.log("Cliked",clickedObj)
 }
 
 ///////************************-------------Jean-Paul's shit--------------********************************////////////////////
-
- var yelp_data;
  var yelp_Object_Array=[];
     function yelpRatingandPictures(beachObject, type) {
         let latLng = {lat:beachObject.location[0], lng:beachObject.location[1]};
@@ -394,44 +387,23 @@ function displayComment(clickedObj){
                     "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
             },
             success: function(response) {
-                console.log("this is my response",response);
-                // let businessName = response.businesses;
-                yelp_data = response;
+                console.log("ajax success",response);
                 yelpObjectConstructor(response,type, beachObject);
-               //  let businesses_Name = yelp_data.businesses[0].name;
-               //
-               //  let businesses_Img = yelp_data.businesses[0].image_url;
-               //
-               //  let businesses_Rating = yelp_data.businesses[0].rating;
-               //
-               //  let businesses_Coordinates = yelp_data.businesses[0].coordinates;
-               //
-               //  let businesses_Distance = yelp_data.businesses[0].distance;
-               //
-               //  let businesses_Review_count = yelp_data.businesses[0].review_count;
-               //
-               //
-               // let yelpObject = {businesses_Name, businesses_Img, businesses_Rating, businesses_Coordinates, businesses_Distance, businesses_Review_count};
-               // yelp_Object_Array.push(yelpObject);
-
             },
             error: function() {
                 console.log("The server returned no information.");
             }
         };
         $.ajax(ajaxConfig)
-
     }
-    var yelpObjectsArray=[];
-
     function yelpObjectConstructor(yelpData, type, beach){
-        for(storeIndex = 0; storeIndex < yelp_data.businesses.length; storeIndex++) {
-            let businesses_Name = yelp_data.businesses[storeIndex].name;
-            let businesses_Img = yelp_data.businesses[storeIndex].image_url;
-            let businesses_Rating = yelp_data.businesses[storeIndex].rating;
-            let businesses_Coordinates = yelp_data.businesses[storeIndex].coordinates;
-            let businesses_Distance = yelp_data.businesses[storeIndex].distance;
-            let businesses_Review_count = yelp_data.businesses[storeIndex].review_count;
+        for(storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
+            let businesses_Name = yelpData.businesses[storeIndex].name;
+            let businesses_Img = yelpData.businesses[storeIndex].image_url;
+            let businesses_Rating = yelpData.businesses[storeIndex].rating;
+            let businesses_Coordinates = yelpData.businesses[storeIndex].coordinates;
+            let businesses_Distance = yelpData.businesses[storeIndex].distance;
+            let businesses_Review_count = yelpData.businesses[storeIndex].review_count;
             var storeObject = {
                 businesses_Name,
                 businesses_Img,
@@ -447,21 +419,17 @@ function displayComment(clickedObj){
     }
 
     function append_Yelp_Data_To_Dom( obj ){
+        let name = $("<p>").text(obj.businesses_Name);
+        let image = $("<img/>").attr('src', obj.businesses_Img);
+        image.addClass('yelp_img');
+        let rating =  $("<p>").text("Rating " + obj.businesses_Rating);
+        let distance =  $("<p>").text(obj.businesses_Distance);
+        let reviewCount =  $("<p>").text("reviews "+ obj.businesses_Review_count);
+        let yelp_data_content = $("<div>");
+        yelp_data_content.addClass('yelp').append(name,image,rating,distance,reviewCount);
+        $('.info-container').append(yelp_data_content);
+    }
 
-              let name = $("<p>").text(obj.businesses_Name);
-              let image = $("<img/>").attr('src', obj.businesses_Img);
-              image.addClass('yelp_img');
-              let rating =  $("<p>").text("Rating " + obj.businesses_Rating);
-              let distance =  $("<p>").text(obj.businesses_Distance);
-              let reviewCount =  $("<p>").text("reviews "+ obj.businesses_Review_count);
-              let yelp_data_content = $("<div>");
-                  yelp_data_content.addClass('yelp').append(name,image,rating,distance,reviewCount);
-
-                  $('.info-container').append(yelp_data_content);
-
-        }
-
-        function scrolling() {
-            $('.info-container').scrollTop(300);
-
-        }
+    function scrolling() {
+        $('.info-container').scrollTop(300);
+    }
