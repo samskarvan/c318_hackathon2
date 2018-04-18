@@ -69,7 +69,7 @@ var lagunaCenter = {lat:33.522759, lng: -117.763314};
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
-        zoom: 14.05,
+        zoom: 13.05,
         gestureHandling: "none",
         disableDefaultUI: true,
         mapTypeId: 'terrain',
@@ -311,10 +311,20 @@ function constructBeachObjects(){
 console.log(beachesArray)
 }
 function dropMarker() {
+    var image = {
+        url: 'assets/Images/beachUmbrella.png',
+        // This marker is 20 pixels wide by 32 pixels high.
+        size: new google.maps.Size(50, 50),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(10, 5),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(0, 0)
+    };
     for(var latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
         var marker = new google.maps.Marker({
             position: {lat: beachLongLat[latlngArrayIndex][0], lng: beachLongLat[latlngArrayIndex][1]},
             map: map,
+            icon: image,
             label: ""+latlngArrayIndex,
             animation: google.maps.Animation.DROP,
         });
