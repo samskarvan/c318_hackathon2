@@ -92,3 +92,7 @@ footer {
 .high-low{
     right: 0;
 }
+
+.clickedBeach {
+    color: green;
+}
