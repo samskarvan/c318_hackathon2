@@ -456,6 +456,7 @@ function displayComment(clickedObj){
     }
 
     function append_Yelp_Data_To_Dom( obj ){
+
         let name = $("<p>").text(obj.businesses_Name);
         let image = $("<img/>").attr('src', obj.businesses_Img);
         image.addClass('yelp_img');
