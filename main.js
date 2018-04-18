@@ -87,6 +87,7 @@ function initMap() {
 
 $(document).ready(function(){
     getWeatherFomDarkSky();
+    constructBeachObjects();
 });
 
 ///////************************-------------Harrison's shit--------------********************************////////////////////
@@ -167,16 +168,43 @@ var beachLongLat = [
     [33.50198, -117.7464],
     [33.49776, -117.74143]
 ];
+
+var beachesArray = [];
+
+function constructBeachObjects(){
+    for(var i = 0; i < beachLongLat.length; i++){
+        var beach = {
+            name: beachArray[i],
+            location: beachLongLat[i],
+            picture : 'wee',
+            id: beachIdArray[i],
+        };
+        beachesArray.push(beach);
+    }
+console.log(beachesArray)
+}
 function dropMarker() {
-    for(latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
+    for(var latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
         var marker = new google.maps.Marker({
             position: {lat: beachLongLat[latlngArrayIndex][0], lng: beachLongLat[latlngArrayIndex][1]},
             map: map,
             label: ""+latlngArrayIndex,
             animation: google.maps.Animation.DROP,
         });
+        marker.addListener('click', function() {
+            displayImage();
+            displayYelp();
+            // $('.markers').removeClass('clickedBeach');
+            // $(this.marker).addClass('clickedBeach');
+            console.log(this);
+
+        });
     }
 }
+
+function displayImage(){}
+
+function displayYelp(){}
 
 ///////************************-------------Jean-Paul's shit--------------********************************////////////////////
 //  find by radius
