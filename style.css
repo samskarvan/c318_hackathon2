@@ -13,19 +13,20 @@ header {
 }
 
 .info-container {
-    position: relative;
+    /*position: relative;*/
     display: inline-block;
     height: 80vh;
     width: 25vw;
     background-color: #1E4969;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .info-1 {
     height: 25%;
     width: 100%;
     margin-top: 5vh;
-    background-color: #B6C3CB;
+    /*background-color: #B6C3CB;*/
 }
 
 .info-2 {
@@ -126,14 +127,16 @@ footer {
     border: 1px solid black;
 }
 .yelp_img {
+    float:left;
     object-fit: contain;
-    width: 100%;
-    height: 100%;
-    display: block;
+    width: 50%;
+    height: 50%;
 }
 
 .yelp {
     text-align: center;
+    height:100%;
+    width:100%;
 }
 
 .yelp >p,
