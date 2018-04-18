@@ -412,7 +412,7 @@ function displayYelp(){}
     function append_Yelp_Data_To_Dom( obj ){
         // for(var i=0; i<yelp_data.businessess.length; i++){
         //     console.log(obj[i]);
-debugger;
+
               let name = $("<p>").text(obj.businesses_Name);
               let image = $("<img/>").attr('src', obj.businesses_Img);
               image.addClass('yelp_img');
