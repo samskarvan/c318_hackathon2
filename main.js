@@ -1,5 +1,13 @@
 ///////************************-------------sams shit--------------********************************////////////////////
-$(document).ready(yelpRatingandPictures);
+//$(document).ready(yelpRatingandPictures);
+$(document).ready(initializeApp);
+
+
+function initializeApp() {
+    getWeatherFomDarkSky();
+    constructBeachObjects();
+    yelpRatingandPictures();
+}
 
 function getWeatherFomDarkSky(){
     var ajaxConfig = {
@@ -85,10 +93,11 @@ function initMap() {
     dropMarker();
 }
 
+/*
 $(document).ready(function(){
     getWeatherFomDarkSky();
     constructBeachObjects();
-});
+});*/
 
 ///////************************-------------Harrison's shit--------------********************************////////////////////
 
@@ -170,6 +179,7 @@ var beachLongLat = [
 ];
 
 var beachesArray = [];
+var arrayOfMarkers = [];
 
 function constructBeachObjects(){
     for(var i = 0; i < beachLongLat.length; i++){
@@ -184,21 +194,24 @@ function constructBeachObjects(){
 console.log(beachesArray)
 }
 function dropMarker() {
-    for(var latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
+    for(var latlngArrayIndex = 0; latlngArrayIndex < beachesArray.length; latlngArrayIndex++) {
+        //console.log(beachesArray[latlngArrayIndex].location[0]);
         var marker = new google.maps.Marker({
-            position: {lat: beachLongLat[latlngArrayIndex][0], lng: beachLongLat[latlngArrayIndex][1]},
+            position: {lat: beachesArray[latlngArrayIndex].location[0], lng: beachesArray[latlngArrayIndex].location[1]},
             map: map,
             label: ""+latlngArrayIndex,
             animation: google.maps.Animation.DROP,
         });
-        marker.addListener('click', function() {
-            displayImage();
-            displayYelp();
-            // $('.markers').removeClass('clickedBeach');
-            // $(this.marker).addClass('clickedBeach');
-            console.log(this);
+        arrayOfMarkers.push(marker);
 
-        });
+        marker.addListener('click', function() {
+             displayImage();
+             displayYelp();
+             // $('.markers').removeClass('clickedBeach');
+             // $(this.marker).addClass('clickedBeach');
+             console.log(this.getPosition().lat());
+             console.log(this.getPosition().lng());
+         });
     }
 }
 
