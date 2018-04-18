@@ -55,6 +55,8 @@ header {
     top: 5%;
     right: 5%;
     background-color: #1fcedb;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .weather {
