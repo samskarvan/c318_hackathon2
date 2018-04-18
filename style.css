@@ -62,10 +62,11 @@ header {
 }
 
 .image {
-    background-image: url("assets/Images/alisoCreek.jpg");
     height: 90%;
     /*width: ;*/
     margin: 2%;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .weather {
