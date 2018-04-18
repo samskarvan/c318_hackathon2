@@ -252,37 +252,21 @@ var beachArray = [
 
 var beachIdArray= [
     "ChIJebS6-Rzk3IARQjvVK17E-H4",
-
     "EiJFbWVyYWxkIEJheSwgTGFndW5hIEJlYWNoLCBDQSwgVVNB",
-
     "EiNDcmVzY2VudCBCYXksIExhZ3VuYSBCZWFjaCwgQ0EsIFVTQQ",
-
     "ChIJN44pRjrk3IAR7UHsqYmz59g",
-
     "ChIJCczbADrk3IARyEU4kGA23IA",
-
     "ChIJdct2SDfk3IAR30_IxuG-S4Q",
-
     "ChIJKSemcTbk3IARS9eQ4c_fJcY",
-
     "ChIJH4Y5okrk3IAR2siC9QLVqCY",
-
     "ChIJh77BF7Ll3IARvW4krXcoTic",
-
     "ChIJ7UfHk6fl3IARn2CG_pg08cY",
-
     "ChIJ24QSxQnl3IAR6NkD-jHsJRg",
-
     "ChIJE76HsRLl3IARM9c5begLxOg",
-
     "ChIJtxPwxWzl3IARgHe-w_aL1AM",
-
     "ChIJU3TgxGnl3IAR26h3tmJHpSA",
-
     "ChIJmw_lV1vl3IARgxDkQ9SbKxs",
-
     "ChIJN2AXi1rl3IARndYdtkSYiRo",
-
     "EicxMDAwIFN0ZXBzIEJlYWNoLCBMYWd1bmEgQmVhY2gsIENBLCBVU0E"
 
 ];
@@ -307,6 +291,27 @@ var beachLongLat = [
     [33.49776, -117.74143]
 ];
 
+var imageArray = [
+    "./assets/Images/cameoCove.jpg",
+    "./assets/Images/emeraldBay.jpg",
+    "./assets/Images/cresentBay.jpg",
+    "./assets/Images/shawsCove.jpg",
+    "./assets/Images/fishermansCove.jpg",
+    "./assets/Images/diversCove.jpg",
+    "./assets/Images/HeislerParkBeach.jpg",
+    "./assets/Images/mainBeach.jpg",
+    "./assets/Images/thaliaStreet.jpg",
+    "./assets/Images/woodsCove.jpg",
+    "./assets/Images/mossCove.jpg",
+    "./assets/Images/victoria.jpg",
+    "./assets/Images/treasureIsland.jpg",
+    "./assets/Images/alisoCreek.jpg",
+    "./assets/Images/coastRoyal.jpg",
+    "./assets/Images/tableRock.jpg",
+    "./assets/Images/thousandStepsBeach.jpg",
+    "./assets/Images/cameoCove.jpg",
+];
+
 var beachesArray = [];
 var arrayOfMarkers = [];
 
@@ -315,7 +320,7 @@ function constructBeachObjects(){
         var beach = {
             name: beachArray[i],
             location: beachLongLat[i],
-            picture : 'wee',
+            picture : imageArray[i],
             id: beachIdArray[i],
         };
         beachesArray.push(beach);
@@ -344,7 +349,11 @@ function dropMarker() {
     }
 }
 
-function displayImage(){}
+function displayImage(){
+debugger;
+    $('.picture').css('background-image', 'url('+this.picture+')');
+
+}
 
 function displayYelp(){}
 
