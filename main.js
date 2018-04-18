@@ -1,5 +1,14 @@
+
 ///////************************-------------sams shit--------------********************************////////////////////
-$(document).ready(yelpRatingandPictures);
+
+$(document).ready(initializeApp);
+
+
+function initializeApp() {
+    getWeatherFomDarkSky();
+    constructBeachObjects();
+    yelpRatingandPictures();
+}
 
 function getWeatherFomDarkSky(){
     var ajaxConfig = {
@@ -213,10 +222,12 @@ function initMap() {
     dropMarker();
 }
 
+/*
 $(document).ready(function(){
     getWeatherFomDarkSky();
     constructBeachObjects();
-});
+});*/
+
 
 ///////************************-------------Harrison's shit--------------********************************////////////////////
 
@@ -242,37 +253,21 @@ var beachArray = [
 
 var beachIdArray= [
     "ChIJebS6-Rzk3IARQjvVK17E-H4",
-
     "EiJFbWVyYWxkIEJheSwgTGFndW5hIEJlYWNoLCBDQSwgVVNB",
-
     "EiNDcmVzY2VudCBCYXksIExhZ3VuYSBCZWFjaCwgQ0EsIFVTQQ",
-
     "ChIJN44pRjrk3IAR7UHsqYmz59g",
-
     "ChIJCczbADrk3IARyEU4kGA23IA",
-
     "ChIJdct2SDfk3IAR30_IxuG-S4Q",
-
     "ChIJKSemcTbk3IARS9eQ4c_fJcY",
-
     "ChIJH4Y5okrk3IAR2siC9QLVqCY",
-
     "ChIJh77BF7Ll3IARvW4krXcoTic",
-
     "ChIJ7UfHk6fl3IARn2CG_pg08cY",
-
     "ChIJ24QSxQnl3IAR6NkD-jHsJRg",
-
     "ChIJE76HsRLl3IARM9c5begLxOg",
-
     "ChIJtxPwxWzl3IARgHe-w_aL1AM",
-
     "ChIJU3TgxGnl3IAR26h3tmJHpSA",
-
     "ChIJmw_lV1vl3IARgxDkQ9SbKxs",
-
     "ChIJN2AXi1rl3IARndYdtkSYiRo",
-
     "EicxMDAwIFN0ZXBzIEJlYWNoLCBMYWd1bmEgQmVhY2gsIENBLCBVU0E"
 
 ];
@@ -297,14 +292,36 @@ var beachLongLat = [
     [33.49776, -117.74143]
 ];
 
+var imageArray = [
+    "./assets/Images/cameoCove.jpg",
+    "./assets/Images/emeraldBay.jpg",
+    "./assets/Images/cresentBay.jpg",
+    "./assets/Images/shawsCove.jpg",
+    "./assets/Images/fishermansCove.jpg",
+    "./assets/Images/diversCove.jpg",
+    "./assets/Images/HeislerParkBeach.jpg",
+    "./assets/Images/mainBeach.jpg",
+    "./assets/Images/thaliaStreet.jpg",
+    "./assets/Images/woodsCove.jpg",
+    "./assets/Images/mossCove.jpg",
+    "./assets/Images/victoria.jpg",
+    "./assets/Images/treasureIsland.jpg",
+    "./assets/Images/alisoCreek.jpg",
+    "./assets/Images/coastRoyal.jpg",
+    "./assets/Images/tableRock.jpg",
+    "./assets/Images/thousandStepsBeach.jpg",
+    "./assets/Images/cameoCove.jpg",
+];
+
 var beachesArray = [];
+var arrayOfMarkers = [];
 
 function constructBeachObjects(){
     for(var i = 0; i < beachLongLat.length; i++){
         var beach = {
             name: beachArray[i],
             location: beachLongLat[i],
-            picture : 'wee',
+            picture : imageArray[i],
             id: beachIdArray[i],
         };
         beachesArray.push(beach);
@@ -323,46 +340,38 @@ function dropMarker() {
     };
     for(var latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
         var marker = new google.maps.Marker({
-            position: {lat: beachLongLat[latlngArrayIndex][0], lng: beachLongLat[latlngArrayIndex][1]},
+            position: {lat: beachesArray[latlngArrayIndex].location[0], lng: beachesArray[latlngArrayIndex].location[1]},
             map: map,
             icon: image,
             label: ""+latlngArrayIndex,
             animation: google.maps.Animation.DROP,
         });
-        marker.addListener('click', function() {
-            displayImage();
-            displayYelp();
-            // $('.markers').removeClass('clickedBeach');
-            // $(this.marker).addClass('clickedBeach');
-            console.log(this);
+        arrayOfMarkers.push(marker);
+        clickHandler(marker, beachesArray[latlngArrayIndex]);
 
-        });
     }
 }
+function clickHandler(markerClicked,beachObj){
+    debugger;
+    markerClicked.addListener('click', function() {
+        displayImage(beachObj);
+        displayYelp();
+        // $('.markers').removeClass('clickedBeach');
+        // $(this.marker).addClass('clickedBeach');
+        console.log(this.getPosition().lat());
+        console.log(this.getPosition().lng());
+    });
+}
+function displayImage(clickedObj){
+debugger;
+    $('.picture').css('background-image', 'url('+clickedObj.picture+')');
 
-function displayImage(){}
+}
 
 function displayYelp(){}
 
 ///////************************-------------Jean-Paul's shit--------------********************************////////////////////
-//  find by radius
-// Cameo Cove  33.55391, -117.8161
-// Emerald Bay  33.55163, -117.80913
-// Crescent Bay  33.54665, -117.80159
-// Shaws Cove  33.54569, -117.79804
-// Fishermans Cove  33.54545, -117.79587
-// Divers Cove  33.54466, -117.79398
-// Heisler Park Beach  33.54341, -117.79074
-// Main Beach 33.54172, -117.78477
-// Thalia Street Beach / Anita Street Beach / Brooks Street Beach/ Pearl Street Beach - 33.5359, -117.77948
-// Woods Cove Beach  33.52704, -117.77098
-// Moss Cove  33.5254, -117.76906
-// Victoria Beach 33.51941, -117.76292
-// Treasure Island Beach  33.51449, -117.75946
-// Aliso Beach 33.50995, -117.75245
-// Coast Royale Beach 33.50537, -117.74861
-// Table Rock Beach 33.50198, -117.7464
-// 1000 Steps Beach 33.49776, -117.74143
+ var yelp_data;
     function yelpRatingandPictures() {
         console.log("Gotcha");
         let latLng = {
@@ -383,7 +392,25 @@ function displayYelp(){}
                     "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
             },
             success: function(response) {
-                console.log(response);
+                console.log("this is my response",response);
+                // let businessName = response.businesses;
+                yelp_data = response;
+                let businesses_Title = `yelp_data.businesses[0].name`;
+
+                let businesses_Img = yelp_data.businesses[0].image_url;
+
+                let businesses_Closed = yelp_data.businesses[0].is_closed;
+
+                let businesses_Location = yelp_data.businesses[0].location.address1;
+
+                let businesses_Price = yelp_data.businesses[0].price;
+
+
+               let yelpObject = {businesses_Title, businesses_Img, businesses_Closed, businesses_Location, businesses_Price};
+               console.log(yelpObject);
+
+            append_Yelp_Data_To_Dom( yelpObject );
+
             },
             error: function() {
                 console.error("The server returned no information.");
@@ -391,3 +418,18 @@ function displayYelp(){}
         };
         $.ajax(ajaxConfig)
     }
+    function append_Yelp_Data_To_Dom( obj ){
+        // for(var i=0; i<yelp_data.businessess.length; i++){
+        //     console.log(obj[i]);
+
+              let businesses_Title = $("<p>").text(obj.businesses_Title);
+              let businesses_Img = $("<img/>").attr('src', obj.businesses_Img);
+                  businesses_Img.addClass('yelp_img');
+              let businesses_Closed =  $("<p>").text(obj.businesses_Closed);
+              let businesses_Location =  $("<p>").text(obj.businesses_Location);
+              let businesses_Price =  $("<p>").text(obj.businesses_Price);
+              let yelp_data_content = $("<div>");
+                  yelp_data_content.addClass('yelp').append(businesses_Title,businesses_Img,businesses_Closed);
+                  $('.yelp_container').append(yelp_data_content);
+
+        }
