@@ -18,9 +18,9 @@ function getWeatherFomDarkSky(){
             let currentTemp = `${Math.ceil(result.currently.temperature)} F`;
             let currentWeatherSummary = `Currently: ${result.currently.summary}`;
             let feelsLikeTemp = `Feels Like: ${Math.ceil(result.currently.apparentTemperature)} F`;
-            let humidity = `Humidity: ${result.currently.humidity}%`;
-            let dailyHighTemp = `Today's High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
-            let dailyLowTemp = `Today's Low: ${Math.ceil(result.daily.data[0].temperatureMin)} F`;
+            let humidity = `Humidity: ${((result.currently.humidity)*100)}%`;
+            let dailyHighTemp = `High: ${Math.ceil(result.daily.data[0].temperatureMax)} F`;
+            let dailyLowTemp = `Low: ${Math.ceil(result.daily.data[0].temperatureMin)} F`;
             let dailyWeatherSummary = result.daily.data[0].summary;
             let sunriseTime = `Sunrise: ${convertTimeToPacificDaylight(result.daily.data[0].sunriseTime)}`;
             let sunsetTime = `Sunset: ${convertTimeToPacificDaylight(result.daily.data[0].sunsetTime)}`;
@@ -58,13 +58,13 @@ function appendWeatherInfoToDom (obj){
     let sunsetTime = $("<p>").text(obj.sunsetTime);
     let currentDiv = $("<div>");
     currentDiv.addClass('current').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity, dailyWeatherSummary);
-    let highAndLowTemp = $("<div>");
-    highAndLowTemp.addClass('high-low').append(dailyHighTemp, dailyLowTemp);
-    let sunriseSunsetTime = $("<div>");
-    sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
-    let dailyInfo = $("<div>");
-    dailyInfo.addClass("daily-info").append(sunriseSunsetTime, highAndLowTemp);
-    $('.weather').append(currentDiv, dailyInfo);
+    // let highAndLowTemp = $("<div>");
+    // highAndLowTemp.addClass('high-low').append(dailyHighTemp, dailyLowTemp);
+    // let sunriseSunsetTime = $("<div>");
+    // sunriseSunsetTime.addClass('sunrise-sunset').append(sunriseTime, sunsetTime);
+    // let dailyInfo = $("<div>");
+    // dailyInfo.addClass("daily-info").append(sunriseSunsetTime, highAndLowTemp);
+    $('.weather').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity,  dailyLowTemp, dailyHighTemp, sunriseTime, sunsetTime);
 }
 
 
@@ -132,6 +132,15 @@ function initMap() {
                     }
                 ]
             },
+        {
+            featureType: 'poi.business',
+            stylers: [{visibility: 'off'}]
+        },
+        {
+            featureType: 'transit',
+            elementType: 'labels.icon',
+            stylers: [{visibility: 'off'}]
+        },
             {
                 "featureType": "landscape.natural",
                 "elementType": "geometry",
@@ -352,6 +361,16 @@ function clickHandler(markerClicked,beachObj,index){
         append_Yelp_Data_To_Dom(yelp_Object_Array[index]);
 
     });
+
+    google.maps.event.addListener(markerClicked, 'click', function() {
+        markerClicked.setIcon("assets/Images/beachUmbrella");
+        infowindow.open(map);
+    });
+
+    // markerClicked.addListener('hover', function() {
+    //     creat
+    //
+    // });
 }
 function displayImage(clickedObj){
     $('.image').css('background-image', 'url('+clickedObj.picture+')');
