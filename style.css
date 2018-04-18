@@ -19,13 +19,15 @@ header {
     width: 25vw;
     background-color: #1E4969;
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow: scroll;
 }
 
 .info-1 {
     height: 25%;
     width: 100%;
     margin-top: 5vh;
+    overflow: scroll;
     /*background-color: #B6C3CB;*/
 }
 
@@ -33,7 +35,7 @@ header {
     height: 25%;
     width: 100%;
     margin: 20vh auto;
-    background-color: #B6C3CB;
+    /*background-color: #B6C3CB;*/
     border-bottom: .2em dotted #6a6969;
 }
 
