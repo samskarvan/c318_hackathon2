@@ -76,7 +76,7 @@ var lagunaCenter = {lat:33.522759, lng: -117.763314};
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
-        zoom: 13,
+        zoom: 13.4,
         gestureHandling: "none",
         disableDefaultUI: true,
         mapTypeId: 'terrain',
