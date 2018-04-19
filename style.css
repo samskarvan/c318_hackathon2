@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #275D87;
+    margin: 0;
+    color: #B6C3CB;
+}
+
+.logo-container{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+}
+#logo{ 
+    width: 100%;
+    height: 100%;
+    padding: 11px;
+    margin-left: 1vw;
+}
+.text-title{
+    text-align: right;
+    color: floralwhite;
+    font-weight: 800;
+    letter-spacing: 1rem;
+    text-shadow: 2px 2px black;
+    margin-right: 2vw;
+    font-size: 5vh;
+    font-family: 'Pacifico', cursive;
+}
+.header-container{
+    display: inline-flex;
+    width: 100%;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    height: 11vh;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.logo-text{
+    width: 67%;
+    height: 50%;
+    float: left;
+   
+}
+.img{
+    align-content: center;
+}
+
+footer{
+    height: 2.5%;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    background-color: #275D87;
+}
+.info-container-wrapper{
+    overflow: hidden;
+    height: 83vh;
+    width: 25vw;
+    display: inline-block;
+    border-radius: 5%;
+    margin-bottom: 1.5%;
+}
+.info-container {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-color: #B6C3CB;
+    box-sizing: border-box;
+    opacity: 0.8;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1%;
+
+}
+
+.info-1 {
+    height: 25%;
+    width: 100%;
+}
+
+#wrapper {
+    position: relative;
+    display: inline-block;
+    height: 85vh;
+    width: 70vw;
+    box-sizing: border-box;
+}
+
+#map-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.picture {
+    height: 40%;
+    width: 40%;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: #338C81;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 10px;
+    opacity: 0.9;
+}
+
+.image {
+    height: 90%;
+    margin: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.reviewTextBox {
+    background-color: black ;
+    opacity: 0.8;
+    max-height: 150px;
+    margin: 2%;
+    margin-top: 5%;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 3%;
+    font-weight: 800;
+    color: floralwhite;
+
+}
+
+.beachName {
+    font-size: 150%;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+}
+
+.reviewText .reviewRating{
+    font-size: 100%;
+    text-align: center;
+}
+
+.weather {
+    height: 35%;
+    width: 25%;
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+    margin: auto auto 5vh 5vw;
+    background-color: #338C81;
+    opacity: 0.8;
+    padding: 10px;
+    box-shadow: 1px 1px 10px;
+    text-align: center;
+    line-height: 3vh;
+}
+
+.weather > p, .reviewText, .yelp {
+    font-family: Arial, sans-serif;
+}
+
+.high-low{
+    right: 0;
+}
+
+.yelp_container {
+    height: 25%;
+    width: 25%;
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+    margin: auto auto 5vh 5vw;
+    background-color: #b65824;
+}
+.yelp_container>div {
+    width: 9vh;
+    height: 9vw;
+    border: 1px solid black;
+}
+.yelp_img {
+    float:left;
+    object-fit: contain;
+    width: 50%;
+    height: 50%;
+}
+
+.yelp {
+    color: black;
+    text-align: center;
+    height:100%;
+    width:100%;
+    border-bottom: .2em dotted #6a6969;
+}
+
+.yelp >p,
+.Name_title >p,
+.price_title >p{
+    margin: 0;
+}
+.yelp > p:first-child{
+    font-size: 1.5rem;
+    font-family: 'Pacifico', cursive;
+}
+
+.rounded-border {
+    border-radius: 10%
+}
+
+.clickedBeach {
+    color: green;
+}
+
+
+.content {
+    position: absolute;
+    left: 2%;
+    bottom: 0
+}
+
+::-webkit-scrollbar{
+    width: 2%;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #1E4969;
+    height: 1%
+}
+
+ @media only screen and (max-width: 600px) {
+     .current > p, .sunrise-sunset > p, .high-low > p, .weather > p, .reviewText {
+         margin: 1%;
+         padding: 1%;
+         height: 10%;
+         font-size: 50%;
+     }
+     .weather > p:first-child {
+         font-size: 125%;
+         height: 20%;
+     }
+ }
+
+@media only screen and (min-width: 600px) {
+    .current > p, .sunrise-sunset > p, .high-low > p, .weather > p, .reviewText {
+        font-size: 75%;
+        margin: 2%;
+    }
+    .weather > p:first-child {
+        font-size: 300%;
+    }
+}
+
