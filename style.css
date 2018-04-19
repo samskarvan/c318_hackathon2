@@ -11,9 +11,7 @@ body {
     margin: 0;
     color: #B6C3CB;
 }
-    /* ------------------------ */
-    /****** LOGO / TITLE   ******/
-    /* ------------------------ */
+
 .logo-container{
     width: 50%;
     height: 50%;
@@ -23,8 +21,6 @@ body {
     width: 100%;
     height: 100%;
     padding: 11px;
-    /* margin: auto; */
-    /* margin-right: 40px; */
     margin-left: 1vw;
 }
 .text-title{
@@ -36,7 +32,6 @@ body {
     margin-right: 2vw;
     font-size: 5vh;
     font-family: 'Pacifico', cursive;
-    /* font-size: 100px; */
 }
 .header-container{
     display: inline-flex;
@@ -51,12 +46,7 @@ header {
     width: 100vw;
     box-sizing: border-box;
 }
-/* img#logo {
-    border-radius: 100px;
-    border: 1px solid black;
-    width: 2vw;
-    height: 6vh;
-} */
+
 .logo-text{
     width: 67%;
     height: 50%;
@@ -131,7 +121,6 @@ footer{
 
 .image {
     height: 90%;
-    /*width: ;*/
     margin: 2%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -184,8 +173,6 @@ footer{
 .high-low{
     right: 0;
 }
-
-/* Yelp Container */
 
 .yelp_container {
     height: 25%;

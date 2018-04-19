@@ -1,6 +1,91 @@
 
 $(document).ready(initializeApp);
 
+var map;
+var markerArray = [];
+var beachesArray = [];
+var beachArray = [
+    "Cameo Cove",
+    "Emerald Bay",
+    "Crescent Bay",
+    "Shaws Cove",
+    "Fishermans Cove",
+    "Divers Cove",
+    "Heisler Park Beach",
+    "Main Beach",
+    "Thalia Street Beach",
+    "Woods Cove Beach",
+    "Moss Cove",
+    "Victoria Beach",
+    "Treasure Island Beach",
+    "Aliso Beach",
+    "West Street Beach",
+    "Table Rock Beach",
+    "1000 Steps Beach"
+];
+
+var beachIdArray= [
+    "ChIJebS6-Rzk3IARQjvVK17E-H4",
+    "ChIJGwIiwBjk3IAR_KeQzuCxMDA",
+    "ChIJiR_-gDvk3IARJvNOyNe6nqs",
+    "ChIJN44pRjrk3IAR7UHsqYmz59g",
+    "ChIJ0cOR_znk3IARGq0Veobn4tw",
+    "ChIJdct2SDfk3IAR30_IxuG-S4Q",
+    "ChIJKSemcTbk3IARS9eQ4c_fJcY",
+    "ChIJH4Y5okrk3IAR2siC9QLVqCY",
+    "ChIJh77BF7Ll3IARvW4krXcoTic",
+    "ChIJ7UfHk6fl3IARn2CG_pg08cY",
+    "ChIJ24QSxQnl3IAR6NkD-jHsJRg",
+    "ChIJE76HsRLl3IARM9c5begLxOg",
+    "ChIJtxPwxWzl3IARgHe-w_aL1AM",
+    "ChIJU3TgxGnl3IAR26h3tmJHpSA",
+    "ChIJe58-Flvl3IARcLNCkfMFFt0",
+    "ChIJN2AXi1rl3IARndYdtkSYiRo",
+    "ChIJJ50s6lXl3IARJr8oXjZjiL8"
+
+];
+
+var beachLongLat = [
+    [33.55391, -117.8161],
+    [33.55163, -117.80913],
+    [33.54665, -117.80159],
+    [33.54569, -117.79804],
+    [33.54545, -117.79587],
+    [33.54466, -117.79398],
+    [33.54341, -117.79074],
+    [33.54172, -117.78477],
+    [33.5359, -117.77948],
+    [33.52704, -117.77098],
+    [33.5254, -117.76906],
+    [33.51941, -117.76292],
+    [33.51449, -117.75946],
+    [33.50995, -117.75245],
+    [33.50537, -117.74861],
+    [33.50198, -117.7464],
+    [33.49776, -117.74143]
+];
+
+var imageArray = [
+    "./assets/Images/cameoCove.jpg",
+    "./assets/Images/emeraldBay.jpg",
+    "./assets/Images/cresentBay.jpg",
+    "./assets/Images/shawsCove.jpg",
+    "./assets/Images/fishermansCove.jpg",
+    "./assets/Images/diversCove.jpg",
+    "./assets/Images/HeislerParkBeach.jpg",
+    "./assets/Images/mainBeach.jpg",
+    "./assets/Images/thaliaStreet.jpg",
+    "./assets/Images/woodsCove.jpg",
+    "./assets/Images/mossCove.jpg",
+    "./assets/Images/victoria.jpg",
+    "./assets/Images/treasureIsland.jpg",
+    "./assets/Images/alisoCreek.jpg",
+    "./assets/Images/coastRoyale.jpg",
+    "./assets/Images/tableRock.jpg",
+    "./assets/Images/thousandStepsBeach.jpg",
+    "./assets/Images/cameoCove.jpg"
+];
+
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
@@ -58,12 +143,8 @@ function appendWeatherInfoToDom (obj){
     $('.weather').append(currentTemp, currentWeatherSummary, feelsLikeTemp, humidity,  dailyLowTemp, dailyHighTemp, sunriseTime, sunsetTime);
 }
 
-var map;
-var markerBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-var markerImage = 'https://coronadotimes.com/wp-content/uploads/2014/07/585-IMG_10221.jpg';
-var lagunaCenter = {lat:33.522759, lng: -117.763314};
-
 function initMap() {
+    var lagunaCenter = {lat:33.522759, lng: -117.763314};
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
         zoom: 13.4,
@@ -190,90 +271,6 @@ function initMap() {
     dropMarker();
 }
 
-var beachArray = [
-    "Cameo Cove",
-    "Emerald Bay",
-    "Crescent Bay",
-    "Shaws Cove",
-    "Fishermans Cove",
-    "Divers Cove",
-    "Heisler Park Beach",
-    "Main Beach",
-    "Thalia Street Beach",
-    "Woods Cove Beach",
-    "Moss Cove",
-    "Victoria Beach",
-    "Treasure Island Beach",
-    "Aliso Beach",
-    "West Street Beach",
-    "Table Rock Beach",
-    "1000 Steps Beach"
-];
-
-var beachIdArray= [
-    "ChIJebS6-Rzk3IARQjvVK17E-H4",
-    "ChIJGwIiwBjk3IAR_KeQzuCxMDA",
-    "ChIJiR_-gDvk3IARJvNOyNe6nqs",
-    "ChIJN44pRjrk3IAR7UHsqYmz59g",
-    "ChIJ0cOR_znk3IARGq0Veobn4tw",
-    "ChIJdct2SDfk3IAR30_IxuG-S4Q",
-    "ChIJKSemcTbk3IARS9eQ4c_fJcY",
-    "ChIJH4Y5okrk3IAR2siC9QLVqCY",
-    "ChIJh77BF7Ll3IARvW4krXcoTic",
-    "ChIJ7UfHk6fl3IARn2CG_pg08cY",
-    "ChIJ24QSxQnl3IAR6NkD-jHsJRg",
-    "ChIJE76HsRLl3IARM9c5begLxOg",
-    "ChIJtxPwxWzl3IARgHe-w_aL1AM",
-    "ChIJU3TgxGnl3IAR26h3tmJHpSA",
-    "ChIJe58-Flvl3IARcLNCkfMFFt0",
-    "ChIJN2AXi1rl3IARndYdtkSYiRo",
-    "ChIJJ50s6lXl3IARJr8oXjZjiL8"
-
-];
-
-var beachLongLat = [
-    [33.55391, -117.8161],
-    [33.55163, -117.80913],
-    [33.54665, -117.80159],
-    [33.54569, -117.79804],
-    [33.54545, -117.79587],
-    [33.54466, -117.79398],
-    [33.54341, -117.79074],
-    [33.54172, -117.78477],
-    [33.5359, -117.77948],
-    [33.52704, -117.77098],
-    [33.5254, -117.76906],
-    [33.51941, -117.76292],
-    [33.51449, -117.75946],
-    [33.50995, -117.75245],
-    [33.50537, -117.74861],
-    [33.50198, -117.7464],
-    [33.49776, -117.74143]
-];
-
-var imageArray = [
-    "./assets/Images/cameoCove.jpg",
-    "./assets/Images/emeraldBay.jpg",
-    "./assets/Images/cresentBay.jpg",
-    "./assets/Images/shawsCove.jpg",
-    "./assets/Images/fishermansCove.jpg",
-    "./assets/Images/diversCove.jpg",
-    "./assets/Images/HeislerParkBeach.jpg",
-    "./assets/Images/mainBeach.jpg",
-    "./assets/Images/thaliaStreet.jpg",
-    "./assets/Images/woodsCove.jpg",
-    "./assets/Images/mossCove.jpg",
-    "./assets/Images/victoria.jpg",
-    "./assets/Images/treasureIsland.jpg",
-    "./assets/Images/alisoCreek.jpg",
-    "./assets/Images/coastRoyale.jpg",
-    "./assets/Images/tableRock.jpg",
-    "./assets/Images/thousandStepsBeach.jpg",
-    "./assets/Images/cameoCove.jpg"
-];
-
-var markerArray = [];
-var beachesArray = [];
 function constructBeachObjects(){
     for(var i = 0; i < beachLongLat.length; i++){
         var beach = {
@@ -288,11 +285,8 @@ function constructBeachObjects(){
 function dropMarker() {
     var image = {
         url: 'assets/Images/beachIcon.png',
-        // This marker is 20 pixels wide by 32 pixels high.
         size: new google.maps.Size(50, 50),
-        // The origin for this image is (0, 0).
         origin: new google.maps.Point(0, 0),
-        // The anchor for this image is the base of the flagpole at (0, 32).
         anchor: new google.maps.Point(0, 0)
     };
     for(var latlngArrayIndex = 0; latlngArrayIndex < beachLongLat.length; latlngArrayIndex++) {
@@ -415,7 +409,7 @@ function append_Yelp_Data_To_Dom( obj ){
             let rating =  $("<p>").text("Rating " + obj[storeType[categoryIndex]][i].businesses_Rating);
             let reviewCount =  $("<p>").text("reviews "+ obj[storeType[categoryIndex]][i].businesses_Review_count);
             let yelp_data_content = $("<div>");
-            yelp_data_content.addClass('yelp').append(name,image,rating,distance,reviewCount);
+            yelp_data_content.addClass('yelp').append(name,image,rating,reviewCount);
             $('.info-1').append(yelp_data_content);
         }
     }
