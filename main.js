@@ -402,7 +402,7 @@ function displayComment(clickedObj){
                 latitude: latLng.lat,
                 longitude: latLng.lng,
                 term: type,
-                radius: 5000,
+                radius: 3000,
                 api_key:
                     "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
             },
