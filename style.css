@@ -17,6 +17,7 @@ body {
 .logo-container{
     width: 50%;
     height: 50%;
+    border-radius: 50%;
 }
 #logo{ 
     width: 100%;
@@ -49,6 +50,12 @@ header {
     width: 100vw;
     box-sizing: border-box;
 }
+/* img#logo {
+    border-radius: 100px;
+    border: 1px solid black;
+    width: 2vw;
+    height: 6vh;
+} */
 .logo-text{
     width: 67%;
     height: 50%;
