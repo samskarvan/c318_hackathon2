@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
@@ -35,6 +35,7 @@ body {
     text-shadow: 2px 2px black;
     margin-right: 2vw;
     font-size: 5vh;
+    font-family: 'Pacifico', cursive;
     /* font-size: 100px; */
 }
 .header-container{
@@ -99,17 +100,6 @@ footer{
 .info-1 {
     height: 25%;
     width: 100%;
-    margin-top: 5vh;
-
-  
-}
-
-.info-2 {
-    height: 25%;
-    width: 100%;
-    margin: 20vh auto;
-    /*background-color: #B6C3CB;*/
-    border-bottom: .2em dotted #6a6969;
 }
 
 #wrapper {
@@ -164,6 +154,7 @@ footer{
 .beachName {
     font-size: 120%;
     text-align: center;
+    font-family: 'Pacifico', cursive;
 }
 
 .reviewText .reviewRating{
@@ -186,13 +177,7 @@ footer{
     line-height: 3vh;
 }
 
-/*.current, .daily-info {*/
-    /*text-align: center;*/
-    /*height: 50%;*/
-    /*width: 100%;*/
-/*}*/
-
-.weather > p, .reviewText {
+.weather > p, .reviewText, .yelp {
     font-family: Arial, sans-serif;
 }
 
@@ -228,6 +213,7 @@ footer{
     text-align: center;
     height:100%;
     width:100%;
+    border-bottom: .2em dotted #6a6969;
 }
 
 .yelp >p,
@@ -237,14 +223,8 @@ footer{
 }
 .yelp > p:first-child{
     font-size: 1.5rem;
+    font-family: 'Pacifico', cursive;
 }
-
-
-.daily-info{
-
-}
-
-
 
 .rounded-border {
     border-radius: 10%
