@@ -156,6 +156,8 @@ footer{
     overflow: auto;
     overflow-x: hidden;
     padding: 3%;
+    font-weight: 800;
+    color: floralwhite;
 
 }
 
@@ -181,6 +183,7 @@ footer{
     padding: 10px;
     box-shadow: 1px 1px 10px;
     text-align: center;
+    line-height: 3vh;
 }
 
 /*.current, .daily-info {*/
