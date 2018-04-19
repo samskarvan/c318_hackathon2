@@ -442,7 +442,7 @@ function displayComment(clickedObj){
     }
 
     function append_Yelp_Data_To_Dom( obj ){
-
+        $(".info-1").empty();
         var storeType = ["bar", "coffee", "food", "rental", "hotel"];
         for (var categoryIndex = 0; categoryIndex < 5; categoryIndex++) {
             for (var i = 0; i < 5; i++) {
