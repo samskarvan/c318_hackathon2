@@ -268,7 +268,7 @@ footer{
 @media only screen and (min-width: 600px) {
     .current > p, .sunrise-sunset > p, .high-low > p, .weather > p, .reviewText {
         font-size: 75%;
-        margin: 3%;
+        margin: 2%;
     }
     .weather > p:first-child {
         font-size: 300%;
