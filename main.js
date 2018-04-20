@@ -144,7 +144,7 @@ function appendWeatherInfoToDom (obj){
 }
 
 function initMap() {
-    var lagunaCenter = {lat:33.522759, lng: -117.763314};
+    var lagunaCenter = {lat: 33.522759, lng: -117.763314};
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
         zoom: 13.4,
@@ -203,15 +203,15 @@ function initMap() {
                     }
                 ]
             },
-        {
-            featureType: 'poi.business',
-            stylers: [{visibility: 'off'}]
-        },
-        {
-            featureType: 'transit',
-            elementType: 'labels.icon',
-            stylers: [{visibility: 'off'}]
-        },
+            {
+                featureType: 'poi.business',
+                stylers: [{visibility: 'off'}]
+            },
+            {
+                featureType: 'transit',
+                elementType: 'labels.icon',
+                stylers: [{visibility: 'off'}]
+            },
             {
                 "featureType": "landscape.natural",
                 "elementType": "geometry",
@@ -268,7 +268,9 @@ function initMap() {
             }
         ]
     });
-    dropMarker();
+    setTimeout(function () {
+        dropMarker();
+    }, 500);
 }
 
 function constructBeachObjects(){
@@ -413,7 +415,6 @@ function append_Yelp_Data_To_Dom( obj ){
             $('.info-1').append(yelp_data_content);
         }
     }
-
 }
 
 function scrolling() {
