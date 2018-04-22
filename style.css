@@ -88,7 +88,7 @@ footer{
 }
 
 .info-1 {
-    height: 25%;
+    height: 13vw;
     width: 100%;
 }
 
@@ -197,6 +197,7 @@ footer{
 
 .yelp {
     color: black;
+    font-size: 1.7vw;
     text-align: center;
     height:100%;
     width:100%;
