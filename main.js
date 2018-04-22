@@ -387,6 +387,7 @@ function yelpRatingandPictures(beachObject, type) {
 
 function yelpObjectConstructor(yelpData, type, beach){
     var storeObjectArray = [];
+    appendYelpType(type);
     for (var storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
         let businesses_Name = yelpData.businesses[storeIndex].name;
         let businesses_Img = yelpData.businesses[storeIndex].image_url;
@@ -407,7 +408,10 @@ function yelpObjectConstructor(yelpData, type, beach){
     }
     beach[type] = storeObjectArray;
 }
-
+function appendYelpType(storeType) {
+    var type = $("<div>").attr("class", "storeType").text(storeType);
+    $('.info-1').append(type);
+}
 /*
 function append_Yelp_Data_To_Dom( obj ){
     $(".info-1").empty();
@@ -427,7 +431,7 @@ function append_Yelp_Data_To_Dom( obj ){
 }
 */
 
-function append_Yelp_Data_To_Dom( storeObject){
+function append_Yelp_Data_To_Dom( storeObject,){
     let name = $("<p>").text(storeObject.businesses_Name);
     let image = $("<img/>").attr('src', storeObject.businesses_Img);
     image.addClass('yelp_img');
