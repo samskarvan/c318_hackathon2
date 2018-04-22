@@ -110,8 +110,8 @@ footer{
     height: 40%;
     width: 40%;
     position: absolute;
-    top: 5%;
-    right: 5%;
+    top: 1%;
+    right: 1%;
     background-color: #338C81;
     background-size: contain;
     background-repeat: no-repeat;
@@ -155,9 +155,8 @@ footer{
     height: 35%;
     width: 25%;
     position: absolute;
-    bottom: 1%;
+    bottom: 5%;
     left: 1%;
-    margin: auto auto 5vh 5vw;
     background-color: #338C81;
     opacity: 0.8;
     padding: 10px;

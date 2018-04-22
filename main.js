@@ -149,7 +149,6 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: lagunaCenter,
         zoom: 13.4,
-        gestureHandling: "none",
         disableDefaultUI: true,
         mapTypeId: 'terrain',
         styles: [
@@ -337,6 +336,8 @@ function clickHandler(markerClicked, beachObj, index){
             anchor: new google.maps.Point(0, 0),
             origin: new google.maps.Point(0, 0),
         });
+        map.panTo(markerClicked.getPosition());
+        map.setZoom(16);
         markerClicked.setAnimation(google.maps.Animation.BOUNCE);
         displayImage(beachObj);
         displayComment(beachObj);
@@ -369,7 +370,7 @@ function yelpRatingandPictures(beachObject, type) {
             latitude: latLng.lat,
             longitude: latLng.lng,
             term: type,
-            radius: 500,
+            radius: 600,
             api_key:
                 "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
         },
