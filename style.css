@@ -209,11 +209,11 @@ footer{
     margin: 0;
 }
 .yelp > p:first-child{
-    font-size: 1.5rem;
+    font-size: 1.7vw;
     font-family: 'Pacifico', cursive;
 }
 .storeType{
-    font-size: 2em;
+    font-size: 3vw;
     color: white;
     font-weight: bold;
     text-align: center;
