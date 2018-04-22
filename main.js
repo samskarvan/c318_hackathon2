@@ -303,18 +303,26 @@ function dropMarker() {
             label: "",
             animation: google.maps.Animation.DROP,
         });
+        /*
         var storeType = ["bar", "coffee", "food", "rental", "hotel"];
-        for (typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
-             yelpRatingandPictures(beachesArray[latlngArrayIndex], storeType[typeIndex]);
-        }
+        for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
+            yelpRatingandPictures(beachesArray[latlngArrayIndex], storeType[typeIndex]);
+        }*/
 
         clickHandler(marker, beachesArray[latlngArrayIndex],latlngArrayIndex);
         markerArray.push(marker)
 
     }
 }
-function clickHandler(markerClicked,beachObj,index){
+
+function clickHandler(markerClicked, beachObj, index){
+    var storeType = ["bar", "coffee", "food", "rental", "hotel"];
     markerClicked.addListener('click', function() {
+        $(".info-1").empty();
+        for (var typeIndex = 0; typeIndex < storeType.length; typeIndex++) {
+             yelpRatingandPictures(beachObj, storeType[typeIndex]);
+        }
+
         for(var i = 0; i < markerArray.length; i++){
             markerArray[i].setIcon({
                 url: 'assets/Images/beachIcon.png',
@@ -332,7 +340,6 @@ function clickHandler(markerClicked,beachObj,index){
         displayImage(beachObj);
         displayComment(beachObj);
         displayYelp();
-        append_Yelp_Data_To_Dom(beachesArray[index]);
     });
 }
 
@@ -380,7 +387,7 @@ function yelpRatingandPictures(beachObject, type) {
 
 function yelpObjectConstructor(yelpData, type, beach){
     var storeObjectArray = [];
-    for(storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
+    for (var storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
         let businesses_Name = yelpData.businesses[storeIndex].name;
         let businesses_Img = yelpData.businesses[storeIndex].image_url;
         let businesses_Rating = yelpData.businesses[storeIndex].rating;
@@ -396,15 +403,17 @@ function yelpObjectConstructor(yelpData, type, beach){
             businesses_Review_count
         };
         storeObjectArray.push(storeObject);
-        beach[type] = storeObjectArray;
+        append_Yelp_Data_To_Dom(storeObject);
     }
+    beach[type] = storeObjectArray;
 }
 
+/*
 function append_Yelp_Data_To_Dom( obj ){
     $(".info-1").empty();
     var storeType = ["bar", "coffee", "food", "rental", "hotel"];
-    for (var categoryIndex = 0; categoryIndex < 5; categoryIndex++) {
-        for (var i = 0; i < 5; i++) {
+    for (var categoryIndex = 0; categoryIndex < storeType.length; categoryIndex++) {
+        for (var i = 0; i < obj[storeType[categoryIndex]].length; i++) {
             let name = $("<p>").text(obj[storeType[categoryIndex]][i].businesses_Name);
             let image = $("<img/>").attr('src', obj[storeType[categoryIndex]][i].businesses_Img);
             image.addClass('yelp_img');
@@ -415,6 +424,18 @@ function append_Yelp_Data_To_Dom( obj ){
             $('.info-1').append(yelp_data_content);
         }
     }
+}
+*/
+
+function append_Yelp_Data_To_Dom( storeObject){
+    let name = $("<p>").text(storeObject.businesses_Name);
+    let image = $("<img/>").attr('src', storeObject.businesses_Img);
+    image.addClass('yelp_img');
+    let rating =  $("<p>").text("Rating " + storeObject.businesses_Rating);
+    let reviewCount =  $("<p>").text("reviews "+ storeObject.businesses_Review_count);
+    let yelp_data_content = $("<div>");
+    yelp_data_content.addClass('yelp').append(name,image,rating,reviewCount);
+    $('.info-1').append(yelp_data_content);
 }
 
 function scrolling() {
