@@ -4,6 +4,7 @@ $(document).ready(initializeApp);
 var map;
 var markerArray = [];
 var beachesArray = [];
+let storeYelpMarkers = [];
 var beachArray = [
     "Cameo Cove",
     "Emerald Bay",
@@ -339,15 +340,13 @@ function clickHandler(markerClicked, beachObj, index){
         markerClicked.setAnimation(google.maps.Animation.BOUNCE);
         displayImage(beachObj);
         displayComment(beachObj);
-        displayYelp();
+        removeMarkers(storeYelpMarkers);
     });
 }
 
 function displayImage(clickedObj){
     $('.image').css('background-image', 'url('+clickedObj.picture+')');
 }
-
-function displayYelp(){}
 
 function displayComment(clickedObj){
     var service = new google.maps.places.PlacesService(map);
@@ -370,7 +369,7 @@ function yelpRatingandPictures(beachObject, type) {
             latitude: latLng.lat,
             longitude: latLng.lng,
             term: type,
-            radius: 3000,
+            radius: 500,
             api_key:
                 "VFceJml03WRISuHBxTrIgwqvexzRGDKstoC48q7UrkABGVECg3W0k_EILnHPuHOpSoxrsX07TkDH3Sl9HtkHQH8AwZEmj6qatqtCYS0OS9Ul_A02RStw_TY7TpteWnYx"
         },
@@ -405,6 +404,7 @@ function yelpObjectConstructor(yelpData, type, beach){
         };
         storeObjectArray.push(storeObject);
         append_Yelp_Data_To_Dom(storeObject);
+        plot_Yelp_Data_On_Map(storeObject);
     }
     beach[type] = storeObjectArray;
 }
@@ -444,5 +444,24 @@ function append_Yelp_Data_To_Dom( storeObject,){
 
 function scrolling() {
     $('.info-1').scrollTop(300);
+}
+
+function plot_Yelp_Data_On_Map(yelpPlace){
+    let yelpMarker = new google.maps.Marker({
+        position: {
+            lat: yelpPlace.businesses_Coordinates.latitude,
+            lng: yelpPlace.businesses_Coordinates.longitude
+        },
+        map: map,
+        label: "",
+        animation: google.maps.Animation.DROP,
+    });
+    storeYelpMarkers.push(yelpMarker);
+}
+
+function removeMarkers(YelpMarkers){
+    for(let i=0; i<YelpMarkers.length; i++){
+        YelpMarkers[i].setMap(null);
+    }
 }
 
