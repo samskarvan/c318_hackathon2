@@ -212,6 +212,13 @@ footer{
     font-size: 1.5rem;
     font-family: 'Pacifico', cursive;
 }
+.storeType{
+    font-size: 2em;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background-color: burlywood;
+}
 
 .rounded-border {
     border-radius: 10%
@@ -261,4 +268,3 @@ footer{
         font-size: 300%;
     }
 }
-
