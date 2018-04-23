@@ -193,6 +193,10 @@ footer{
     width: 50%;
     height: 50%;
 }
+.yelpStars{
+    width: 11vw;
+    margin: 2%;
+}
 
 .yelp {
     color: black;

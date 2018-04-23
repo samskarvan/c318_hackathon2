@@ -86,7 +86,18 @@ var imageArray = [
     "./assets/Images/thousandStepsBeach.jpg",
     "./assets/Images/cameoCove.jpg"
 ];
-
+var yelpStars = {
+    "0":"./assets/small/small_0@2x.png",
+    "1":"./assets/small/small_1@2x.png",
+    "1.5":"./assets/small/small_1_half@2x.png",
+    "2":"./assets/small/small_2@2x.png",
+    "2.5":"./assets/small/small_2_half@2x.png",
+    "3": "./assets/small/small_3@2x.png",
+    "3.5": "./assets/small/small_3_half@2x.png",
+    "4":"./assets/small/small_4@2x.png",
+    "4.5":"./assets/small/small_4_half@2x.png",
+    "5":"./assets/small/small_5@2x.png"
+};
 function initializeApp() {
     getWeatherFomDarkSky();
     constructBeachObjects();
@@ -387,7 +398,11 @@ function yelpRatingandPictures(beachObject, type) {
 
 function yelpObjectConstructor(yelpData, type, beach){
     var storeObjectArray = [];
-    appendYelpType(type);
+    if(yelpData.businesses.length ===0){
+        return
+    }else{
+        appendYelpType(type);
+    }
     for (var storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
         let businesses_Name = yelpData.businesses[storeIndex].name;
         let businesses_Img = yelpData.businesses[storeIndex].image_url;
@@ -434,12 +449,15 @@ function append_Yelp_Data_To_Dom( obj ){
 
 function append_Yelp_Data_To_Dom( storeObject,){
     let name = $("<p>").text(storeObject.businesses_Name);
-    let image = $("<img/>").attr('src', storeObject.businesses_Img);
+    let image = $("<img>").attr('src', storeObject.businesses_Img);
     image.addClass('yelp_img');
-    let rating =  $("<p>").text("Rating " + storeObject.businesses_Rating);
-    let reviewCount =  $("<p>").text("reviews "+ storeObject.businesses_Review_count);
+    let ratingNumber = storeObject.businesses_Rating.toString();
+    let yelp_star = $("<img>").attr("src", yelpStars[ratingNumber]);
+    yelp_star.addClass("yelpStars");
+    // let rating =  $("<p>").text("Rating " + storeObject.businesses_Rating);
+    let reviewCount =  $("<p>").text( storeObject.businesses_Review_count + " reviews");
     let yelp_data_content = $("<div>");
-    yelp_data_content.addClass('yelp').append(name,image,rating,reviewCount);
+    yelp_data_content.addClass('yelp').append(name,image,yelp_star,reviewCount);
     $('.info-1').append(yelp_data_content);
 }
 
