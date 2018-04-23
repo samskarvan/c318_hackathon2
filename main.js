@@ -387,7 +387,11 @@ function yelpRatingandPictures(beachObject, type) {
 
 function yelpObjectConstructor(yelpData, type, beach){
     var storeObjectArray = [];
-    appendYelpType(type);
+    if(yelpData.businesses.length ===0){
+        return
+    }else{
+        appendYelpType(type);
+    }
     for (var storeIndex = 0; storeIndex < yelpData.businesses.length; storeIndex++) {
         let businesses_Name = yelpData.businesses[storeIndex].name;
         let businesses_Img = yelpData.businesses[storeIndex].image_url;
