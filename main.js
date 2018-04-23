@@ -420,7 +420,7 @@ function yelpObjectConstructor(yelpData, type, beach){
         };
         storeObjectArray.push(storeObject);
         append_Yelp_Data_To_Dom(storeObject);
-        plot_Yelp_Data_On_Map(storeObject);
+        // plot_Yelp_Data_On_Map(storeObject);
     }
     beach[type] = storeObjectArray;
 }
@@ -459,6 +459,13 @@ function append_Yelp_Data_To_Dom( storeObject,){
     let yelp_data_content = $("<div>");
     yelp_data_content.addClass('yelp').append(name,image,yelp_star,reviewCount);
     $('.info-1').append(yelp_data_content);
+    let yelpMarker = plot_Yelp_Data_On_Map(storeObject);
+    yelp_data_content.on("click", yelpMarker, function(){
+        for(let markerIndex = 0; markerIndex < storeYelpMarkers.length; markerIndex++){
+            storeYelpMarkers[markerIndex].setAnimation(null);
+        }
+        yelpMarker.setAnimation(google.maps.Animation.BOUNCE);
+    })
 }
 
 function scrolling() {
@@ -476,6 +483,7 @@ function plot_Yelp_Data_On_Map(yelpPlace){
         animation: google.maps.Animation.DROP,
     });
     storeYelpMarkers.push(yelpMarker);
+    return yelpMarker;
 }
 
 function removeMarkers(YelpMarkers){
