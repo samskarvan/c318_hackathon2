@@ -460,12 +460,16 @@ function append_Yelp_Data_To_Dom( storeObject,){
     yelp_data_content.addClass('yelp').append(name,image,yelp_star,reviewCount);
     $('.info-1').append(yelp_data_content);
     let yelpMarker = plot_Yelp_Data_On_Map(storeObject);
+    yelp_data_content.on("click", function(){
+        $(".yelpSelected").removeClass("yelpSelected");
+        yelp_data_content.addClass("yelpSelected");
+    });
     yelp_data_content.on("click", yelpMarker, function(){
         for(let markerIndex = 0; markerIndex < storeYelpMarkers.length; markerIndex++){
             storeYelpMarkers[markerIndex].setAnimation(null);
         }
         yelpMarker.setAnimation(google.maps.Animation.BOUNCE);
-    })
+    });
 }
 
 function scrolling() {
