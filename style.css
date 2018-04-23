@@ -197,7 +197,10 @@ footer{
     width: 11vw;
     margin: 2%;
 }
-
+.yelpSelected{
+    border: white outset 0.1vw;
+    background-color: white
+}
 .yelp {
     color: black;
     font-size: 1.7vw;
